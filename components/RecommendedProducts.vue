@@ -3,9 +3,8 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <div>
-        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 flex items-center gap-2">
-          <span>{{ icon }}</span>
-          <span>{{ title }}</span>
+        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900">
+          {{ title }}
         </h2>
         <p v-if="subtitle" class="text-gray-500 text-xs mt-2 font-light">{{ subtitle }}</p>
       </div>
@@ -36,11 +35,9 @@ const props = withDefaults(defineProps<{
   products: Product[];
   title: string;
   subtitle?: string;
-  icon?: string;
   columns?: 2 | 3 | 4;
   showViewAll?: boolean;
 }>(), {
-  icon: '✨',
   columns: 4,
   showViewAll: false,
 });

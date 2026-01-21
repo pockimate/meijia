@@ -3,13 +3,18 @@
     <div class="bg-black py-3">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-center gap-4 text-white">
-          <span class="text-xl animate-pulse">{{ activePromo.badge?.split(' ')[0] || '🎉' }}</span>
+          <svg v-if="activePromo.type === 'flash-sale'" class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <svg v-else class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+          </svg>
           <p class="text-sm sm:text-base font-light text-center">
             <span class="font-medium tracking-widest uppercase">{{ activePromo.name }}:</span>
             {{ activePromo.description }}
           </p>
           <span v-if="timeLeft" class="text-xs sm:text-sm bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">
-            ⏰ {{ timeLeft }}
+            {{ timeLeft }}
           </span>
         </div>
       </div>

@@ -3,37 +3,37 @@
     <div class="max-w-md w-full">
       
       <!-- Logo -->
-      <div class="text-center mb-8">
-        <NuxtLink to="/" class="inline-flex items-center gap-2 text-3xl font-light tracking-widest uppercase text-gray-900">
-          <span class="w-10 h-10 rounded-full bg-black flex items-center justify-center">✨</span>
-          ASTRO
+      <div class="text-center mb-12">
+        <NuxtLink to="/" class="inline-flex flex-col items-center gap-3">
+          <span class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white text-xs font-medium tracking-[0.2em]">AN</span>
+          <span class="text-2xl font-light tracking-[0.25em] uppercase text-gray-900">ASTRO NAILS</span>
         </NuxtLink>
-        <p class="mt-2 text-gray-600">Welcome back to the cosmos</p>
+        <p class="mt-4 text-sm text-gray-500 font-light tracking-[0.1em]">Welcome back to the cosmos</p>
       </div>
 
       <!-- Login Form -->
-      <div class="bg-gray-50 border border-gray-200 rounded-lg p-8">
-        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-6">Sign In</h2>
+      <div class="card-base">
+        <h2 class="text-xl font-light tracking-[0.15em] uppercase text-gray-900 mb-8">Sign In</h2>
         
         <form @submit.prevent="handleLogin" class="space-y-6">
           <div>
-            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Email</label>
+            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Email</label>
             <input 
               v-model="form.email" 
               type="email" 
               required
-              class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+              class="input-base"
               placeholder="cosmic@example.com"
             />
           </div>
 
           <div>
-            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Password</label>
+            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Password</label>
             <input 
               v-model="form.password" 
               type="password" 
               required
-              class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+              class="input-base"
               placeholder="••••••••"
             />
           </div>
@@ -41,22 +41,22 @@
           <div class="flex items-center justify-between">
             <label class="flex items-center">
               <input type="checkbox" class="rounded border-gray-300 bg-white text-black focus:ring-black" />
-              <span class="ml-2 text-sm text-gray-600">Remember me</span>
+              <span class="ml-2 text-xs text-gray-600 font-light">Remember me</span>
             </label>
-            <a href="#" class="text-sm text-gray-900 hover:opacity-50 transition-opacity">Forgot password?</a>
+            <a href="#" class="text-xs text-gray-900 hover:opacity-50 transition-opacity font-light">Forgot password?</a>
           </div>
 
           <button 
             type="submit"
             :disabled="isLoading"
-            class="w-full bg-black text-white px-6 py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            class="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {{ isLoading ? 'Signing In...' : 'Sign In' }}
           </button>
         </form>
 
         <div class="mt-6 text-center">
-          <p class="text-gray-600 text-sm">
+          <p class="text-gray-600 text-xs font-light">
             Don't have an account? 
             <NuxtLink to="/auth/register" class="text-gray-900 hover:opacity-50 transition-opacity font-medium">Sign Up</NuxtLink>
           </p>
@@ -68,19 +68,17 @@
             <div class="absolute inset-0 flex items-center">
               <div class="w-full border-t border-gray-200"></div>
             </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-gray-50 text-gray-500">Or continue with</span>
+            <div class="relative flex justify-center text-xs">
+              <span class="px-2 bg-gray-50 text-gray-500 font-light tracking-[0.1em] uppercase">Or continue with</span>
             </div>
           </div>
 
           <div class="mt-6 grid grid-cols-2 gap-3">
-            <button class="flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 hover:bg-gray-100 transition-colors">
-              <span>🌐</span>
-              <span class="text-sm font-medium">Google</span>
+            <button class="btn-secondary flex items-center justify-center gap-2">
+              <span class="text-xs font-light">Google</span>
             </button>
-            <button class="flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 hover:bg-gray-100 transition-colors">
-              <span>👤</span>
-              <span class="text-sm font-medium">GitHub</span>
+            <button class="btn-secondary flex items-center justify-center gap-2">
+              <span class="text-xs font-light">GitHub</span>
             </button>
           </div>
         </div>

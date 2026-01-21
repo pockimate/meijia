@@ -15,8 +15,10 @@
             placeholder="Search for cosmic nails..."
             class="w-full bg-white border border-gray-200 rounded-lg px-6 py-4 pr-12 text-gray-900 focus:outline-none focus:border-black transition-colors"
           />
-          <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:opacity-50">
-            🔍
+          <button 
+            @click="handleSearch"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:opacity-50 text-xs tracking-[0.2em] uppercase">
+            Search
           </button>
         </div>
       </div>
@@ -31,7 +33,7 @@
               <h3 class="text-lg font-light tracking-widest uppercase text-gray-900">Filters</h3>
               <button 
                 @click="searchStore.resetFilters()"
-                class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-900 hover:opacity-50 transition-opacity"
+                class="text-xs tracking-[0.2em] uppercase font-light text-gray-900 hover:opacity-50 transition-opacity"
               >
                 Reset
               </button>
@@ -39,7 +41,7 @@
 
             <!-- Category Filter -->
             <div>
-              <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Category</label>
+              <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Category</label>
               <div class="space-y-2">
                 <label 
                   v-for="cat in categories" 
@@ -59,7 +61,7 @@
 
             <!-- Price Range -->
             <div>
-              <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">
+              <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-3">
                 Price: ${{ searchStore.filters.minPrice }} - ${{ searchStore.filters.maxPrice }}
               </label>
               <div class="space-y-3">
@@ -82,7 +84,7 @@
 
             <!-- Rating Filter -->
             <div>
-              <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Minimum Rating</label>
+              <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Minimum Rating</label>
               <div class="space-y-2">
                 <label 
                   v-for="rating in [0, 3, 4, 4.5]" 
@@ -114,7 +116,7 @@
             </p>
             
             <div class="flex items-center gap-2">
-              <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-600">Sort by:</label>
+              <label class="text-xs tracking-[0.2em] uppercase font-light text-gray-600">Sort by:</label>
               <select 
                 v-model="searchStore.filters.sortBy"
                 class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-gray-900 focus:outline-none focus:border-black transition-colors"
@@ -131,7 +133,9 @@
           <!-- No Results -->
           <div v-if="searchStore.filteredProducts.length === 0" class="text-center py-20">
             <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-              <span class="text-5xl">🔍</span>
+              <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
             </div>
             <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-4">No products found</h2>
             <p class="text-gray-600 mb-8">Try adjusting your filters or search terms</p>

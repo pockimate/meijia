@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen bg-astro-bg py-12">
+  <div class="min-h-screen bg-white py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Back Button -->
       <NuxtLink
         to="/account"
-        class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8"
+        class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-8 text-sm"
       >
         <span>←</span>
         <span>Back to Orders</span>
@@ -12,14 +12,14 @@
 
       <!-- Order Not Found -->
       <div v-if="!order" class="text-center py-20">
-        <div class="w-32 h-32 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6">
-          <span class="text-6xl">📦</span>
+        <div class="w-32 h-32 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+          <span class="text-xs tracking-widest uppercase text-gray-400">Not Found</span>
         </div>
-        <h2 class="text-2xl font-serif font-bold text-white mb-4">Order Not Found</h2>
-        <p class="text-gray-400 mb-8">The order you're looking for doesn't exist</p>
+        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-4">Order Not Found</h2>
+        <p class="text-gray-600 mb-8">The order you're looking for doesn't exist</p>
         <NuxtLink
           to="/account"
-          class="inline-flex items-center gap-2 bg-gradient-to-r from-astro-purple to-astro-teal text-white px-8 py-3 rounded-xl font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all"
+          class="inline-flex items-center gap-2 bg-black text-white px-8 py-3 rounded-lg text-xs tracking-[0.2em] uppercase hover:bg-zinc-800 transition-all"
         >
           View All Orders
         </NuxtLink>
@@ -28,13 +28,13 @@
       <!-- Order Details -->
       <div v-else class="space-y-8">
         <!-- Header -->
-        <div class="bg-astro-card border border-white/10 rounded-xl p-6">
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 class="text-2xl font-serif font-bold text-white mb-2">
+              <h1 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-2">
                 Order #{{ order.orderNumber }}
               </h1>
-              <p class="text-sm text-gray-400">
+              <p class="text-sm text-gray-600">
                 Placed on {{ formatDate(order.createdAt) }}
               </p>
             </div>
@@ -53,8 +53,8 @@
         </div>
 
         <!-- Order Timeline -->
-        <div class="bg-astro-card border border-white/10 rounded-xl p-6">
-          <h2 class="text-xl font-serif font-bold text-white mb-6">Order Tracking</h2>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-6">Order Tracking</h2>
           <OrderTimeline
             :current-status="order.status"
             :timeline-events="timelineEvents"
@@ -64,27 +64,27 @@
         </div>
 
         <!-- Shipping Address -->
-        <div class="bg-astro-card border border-white/10 rounded-xl p-6">
-          <h2 class="text-xl font-serif font-bold text-white mb-4">Shipping Address</h2>
-          <div class="text-gray-300 space-y-1">
-            <p class="font-medium text-white">{{ order.shippingAddress.name }}</p>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-4">Shipping Address</h2>
+          <div class="text-gray-700 space-y-1">
+            <p class="font-medium text-gray-900">{{ order.shippingAddress.name }}</p>
             <p>{{ order.shippingAddress.address }}</p>
             <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.postalCode }}</p>
             <p>{{ order.shippingAddress.country }}</p>
-            <p class="text-sm text-gray-400 mt-2">📞 {{ order.shippingAddress.phone }}</p>
+            <p class="text-sm text-gray-600 mt-2">{{ order.shippingAddress.phone }}</p>
           </div>
         </div>
 
         <!-- Order Items -->
-        <div class="bg-astro-card border border-white/10 rounded-xl p-6">
-          <h2 class="text-xl font-serif font-bold text-white mb-4">Order Items</h2>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-4">Order Items</h2>
           <div class="space-y-4">
             <div
               v-for="item in order.items"
               :key="item.id"
-              class="flex gap-4 pb-4 border-b border-white/5 last:border-0"
+              class="flex gap-4 pb-4 border-b border-gray-200 last:border-0"
             >
-              <div class="w-20 h-20 rounded-lg overflow-hidden bg-white/5 flex-shrink-0">
+              <div class="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
                 <img
                   :src="item.image"
                   :alt="item.name"
@@ -92,39 +92,39 @@
                 />
               </div>
               <div class="flex-1">
-                <h3 class="font-medium text-white">{{ item.name }}</h3>
-                <p class="text-sm text-gray-400">{{ item.category }}</p>
+                <h3 class="font-medium text-gray-900">{{ item.name }}</h3>
+                <p class="text-sm text-gray-600">{{ item.category }}</p>
                 <p v-if="item.selectedSize" class="text-xs text-gray-500 mt-1">
                   Size: {{ item.selectedSize }}
                 </p>
               </div>
               <div class="text-right">
-                <p class="font-medium text-white">${{ (item.price * item.quantity).toFixed(2) }}</p>
-                <p class="text-sm text-gray-400">Qty: {{ item.quantity }}</p>
+                <p class="font-medium text-gray-900">${{ (item.price * item.quantity).toFixed(2) }}</p>
+                <p class="text-sm text-gray-600">Qty: {{ item.quantity }}</p>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Order Summary -->
-        <div class="bg-astro-card border border-white/10 rounded-xl p-6">
-          <h2 class="text-xl font-serif font-bold text-white mb-4">Order Summary</h2>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-4">Order Summary</h2>
           <div class="space-y-3">
-            <div class="flex justify-between text-gray-400">
+            <div class="flex justify-between text-gray-600">
               <span>Subtotal</span>
               <span class="font-mono">${{ order.subtotal.toFixed(2) }}</span>
             </div>
-            <div class="flex justify-between text-gray-400">
+            <div class="flex justify-between text-gray-600">
               <span>Shipping</span>
               <span class="font-mono">${{ order.shipping.toFixed(2) }}</span>
             </div>
-            <div class="flex justify-between text-gray-400">
+            <div class="flex justify-between text-gray-600">
               <span>Tax</span>
               <span class="font-mono">${{ order.tax.toFixed(2) }}</span>
             </div>
-            <div class="flex justify-between text-xl font-bold text-white pt-3 border-t border-white/10">
+            <div class="flex justify-between text-xl font-bold text-gray-900 pt-3 border-t border-gray-200">
               <span>Total</span>
-              <span class="text-astro-purple font-mono">${{ order.total.toFixed(2) }}</span>
+              <span class="font-mono">${{ order.total.toFixed(2) }}</span>
             </div>
           </div>
         </div>
@@ -133,19 +133,19 @@
         <div class="flex flex-col sm:flex-row gap-4">
           <button
             v-if="order.status === 'delivered'"
-            class="flex-1 bg-gradient-to-r from-astro-purple to-astro-teal text-white py-3 px-6 rounded-xl font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all"
+            class="flex-1 bg-black text-white py-3 px-6 rounded-lg text-xs tracking-[0.2em] uppercase hover:bg-zinc-800 transition-all"
           >
             Leave a Review
           </button>
           <button
-            class="flex-1 border border-white/20 text-white py-3 px-6 rounded-xl font-medium hover:bg-white/5 transition-all"
+            class="flex-1 border border-gray-200 text-gray-900 py-3 px-6 rounded-lg text-xs tracking-[0.2em] uppercase hover:border-black transition-all"
           >
             Contact Support
           </button>
           <button
             v-if="order.status === 'pending'"
             @click="handleCancelOrder"
-            class="flex-1 border border-red-400/50 text-red-400 py-3 px-6 rounded-xl font-medium hover:bg-red-400/10 transition-all"
+            class="flex-1 border border-red-400 text-red-600 py-3 px-6 rounded-lg text-xs tracking-[0.2em] uppercase hover:bg-red-50 transition-all"
           >
             Cancel Order
           </button>
@@ -176,19 +176,19 @@ const statusLabels = {
 };
 
 const statusIcons = {
-  pending: '⏳',
-  processing: '⚙️',
-  shipped: '🚚',
-  delivered: '✅',
-  cancelled: '❌',
+  pending: '○',
+  processing: '◐',
+  shipped: '◓',
+  delivered: '●',
+  cancelled: '×',
 };
 
 const statusColors = {
-  pending: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
-  processing: 'bg-blue-500/20 text-blue-400 border border-blue-500/30',
-  shipped: 'bg-purple-500/20 text-purple-400 border border-purple-500/30',
-  delivered: 'bg-green-500/20 text-green-400 border border-green-500/30',
-  cancelled: 'bg-red-500/20 text-red-400 border border-red-500/30',
+  pending: 'bg-yellow-100 text-yellow-700 border border-yellow-200',
+  processing: 'bg-blue-100 text-blue-700 border border-blue-200',
+  shipped: 'bg-purple-100 text-purple-700 border border-purple-200',
+  delivered: 'bg-green-100 text-green-700 border border-green-200',
+  cancelled: 'bg-red-100 text-red-700 border border-red-200',
 };
 
 // 模拟物流信息
@@ -218,7 +218,7 @@ const timelineEvents = computed(() => {
     title: 'Order Placed',
     description: 'Your order has been received and is being processed',
     timestamp: order.value.createdAt,
-    icon: '📝',
+    icon: '1',
     location: 'Online',
   });
 
@@ -230,7 +230,7 @@ const timelineEvents = computed(() => {
       title: 'Order Processing',
       description: 'Your order is being prepared for shipment',
       timestamp: processingDate.toISOString(),
-      icon: '⚙️',
+      icon: '2',
       location: 'Warehouse',
     });
   }
@@ -243,7 +243,7 @@ const timelineEvents = computed(() => {
       title: 'Order Shipped',
       description: 'Your package is on its way',
       timestamp: shippedDate.toISOString(),
-      icon: '🚚',
+      icon: '3',
       location: 'Distribution Center',
     });
 
@@ -254,7 +254,7 @@ const timelineEvents = computed(() => {
       title: 'In Transit',
       description: 'Package is moving through the delivery network',
       timestamp: transitDate.toISOString(),
-      icon: '📦',
+      icon: '4',
       location: 'Regional Hub',
     });
   }
@@ -267,7 +267,7 @@ const timelineEvents = computed(() => {
       title: 'Delivered',
       description: 'Package has been delivered successfully',
       timestamp: deliveredDate.toISOString(),
-      icon: '✅',
+      icon: '✓',
       location: order.value.shippingAddress.city,
     });
   }
@@ -277,7 +277,7 @@ const timelineEvents = computed(() => {
       title: 'Order Cancelled',
       description: 'This order has been cancelled',
       timestamp: order.value.updatedAt,
-      icon: '❌',
+      icon: '×',
       location: 'System',
     });
   }

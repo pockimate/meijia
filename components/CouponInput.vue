@@ -1,25 +1,29 @@
 <template>
   <div class="space-y-4">
     <!-- Applied Coupon -->
-    <div v-if="couponStore.appliedCoupon" class="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
+    <div v-if="couponStore.appliedCoupon" class="bg-green-50 border border-green-200 rounded-lg p-4">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-            <span class="text-xl">🎉</span>
+          <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-mono font-bold text-green-400">{{ couponStore.appliedCoupon.code }}</span>
-              <span class="text-xs text-green-400">Applied</span>
+              <span class="font-mono font-bold text-green-700">{{ couponStore.appliedCoupon.code }}</span>
+              <span class="text-xs text-green-600">Applied</span>
             </div>
-            <p class="text-sm text-gray-400">{{ couponStore.appliedCoupon.description }}</p>
+            <p class="text-sm text-gray-600">{{ couponStore.appliedCoupon.description }}</p>
           </div>
         </div>
         <button
           @click="handleRemove"
-          class="text-gray-400 hover:text-red-400 transition-colors"
+          class="text-gray-400 hover:text-red-600 transition-colors"
         >
-          <span class="text-xl">✕</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
       </div>
     </div>
@@ -85,18 +89,20 @@
       </div>
 
       <!-- Best Coupon Suggestion -->
-      <div v-if="bestCoupon && !couponStore.appliedCoupon" class="bg-astro-purple/10 border border-astro-purple/30 rounded-lg p-3">
+      <div v-if="bestCoupon && !couponStore.appliedCoupon" class="bg-gray-50 border border-gray-200 rounded-lg p-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-lg">💡</span>
+            <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
             <div>
-              <p class="text-sm text-white font-medium">Best deal for you!</p>
-              <p class="text-xs text-gray-400">Use <span class="font-mono text-astro-purple">{{ bestCoupon.code }}</span> to save more</p>
+              <p class="text-sm text-gray-900 font-medium">Best deal for you!</p>
+              <p class="text-xs text-gray-600">Use <span class="font-mono text-black">{{ bestCoupon.code }}</span> to save more</p>
             </div>
           </div>
           <button
             @click="handleQuickApply(bestCoupon.code)"
-            class="text-xs bg-astro-purple hover:bg-astro-purple/80 text-white px-3 py-1.5 rounded-lg transition-colors"
+            class="text-xs bg-black hover:bg-zinc-800 text-white px-3 py-1.5 rounded-lg transition-colors"
           >
             Apply
           </button>
@@ -111,18 +117,25 @@
         <div
           v-for="promo in activePromotions"
           :key="promo.id"
-          class="bg-gradient-to-r from-astro-purple/10 to-astro-teal/10 border border-white/10 rounded-lg p-3"
+          class="bg-gray-50 border border-gray-200 rounded-lg p-3"
         >
           <div class="flex items-start gap-3">
-            <span class="text-2xl">{{ promo.badge?.split(' ')[0] || '🎁' }}</span>
+            <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+              <svg v-if="promo.type === 'flash-sale'" class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              <svg v-else class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+              </svg>
+            </div>
             <div class="flex-1">
               <div class="flex items-center gap-2 mb-1">
-                <h5 class="font-medium text-white">{{ promo.name }}</h5>
-                <span v-if="promo.badge" class="text-xs bg-white/10 text-gray-300 px-2 py-0.5 rounded-full">
+                <h5 class="font-medium text-gray-900">{{ promo.name }}</h5>
+                <span v-if="promo.badge" class="text-xs bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
                   {{ promo.badge.split(' ').slice(1).join(' ') }}
                 </span>
               </div>
-              <p class="text-sm text-gray-400">{{ promo.description }}</p>
+              <p class="text-sm text-gray-600">{{ promo.description }}</p>
               <p v-if="promo.expiresAt" class="text-xs text-gray-500 mt-1">
                 Expires: {{ formatExpiry(promo.expiresAt) }}
               </p>

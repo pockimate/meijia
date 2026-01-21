@@ -17,20 +17,20 @@
             <div class="flex justify-between items-start mb-4">
               <div>
                 <h3 class="text-2xl font-light tracking-widest uppercase text-gray-900">{{ sign.name }}</h3>
-                <p class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mt-1">{{ sign.dates }}</p>
+                <p class="text-xs tracking-[0.2em] uppercase font-light text-gray-500 mt-1">{{ sign.dates }}</p>
               </div>
-              <div class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded text-[10px] tracking-[0.2em] uppercase font-light text-gray-700">
+              <div class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded text-xs tracking-[0.2em] uppercase font-light text-gray-700">
                 {{ sign.icon }} {{ sign.element }}
               </div>
             </div>
 
             <div class="space-y-4 mb-6">
               <div>
-                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Vibe</span>
+                <span class="text-xs tracking-[0.2em] uppercase font-light text-gray-500">Vibe</span>
                 <p class="text-gray-700">{{ sign.vibe }}</p>
               </div>
               <div>
-                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Recommendation</span>
+                <span class="text-xs tracking-[0.2em] uppercase font-light text-gray-500">Recommendation</span>
                 <p class="text-gray-900">{{ sign.recommendation }}</p>
               </div>
             </div>
@@ -49,18 +49,18 @@
 
 <script setup lang="ts">
 const signs = [
-  { name: 'Aries', dates: 'Mar 21 - Apr 19', element: 'Fire', icon: '🔥', vibe: 'Fierce & Unstoppable', color: 'from-red-500 to-orange-500', recommendation: 'Stiletto shape with bold chrome red.' },
-  { name: 'Taurus', dates: 'Apr 20 - May 20', element: 'Earth', icon: '🌍', vibe: 'Luxurious & Grounded', color: 'from-green-500 to-emerald-700', recommendation: 'Square shape in matte forest green.' },
-  { name: 'Gemini', dates: 'May 21 - Jun 20', element: 'Air', icon: '💨', vibe: 'Dual & Dynamic', color: 'from-yellow-300 to-yellow-500', recommendation: 'Mismatched hands or split designs.' },
-  { name: 'Cancer', dates: 'Jun 21 - Jul 22', element: 'Water', icon: '💧', vibe: 'Intuitive & Moon-ruled', color: 'from-gray-200 to-blue-200', recommendation: 'Pearl finish or silver cat-eye.' },
-  { name: 'Leo', dates: 'Jul 23 - Aug 22', element: 'Fire', icon: '🔥', vibe: 'Royal & Radiant', color: 'from-yellow-500 to-orange-400', recommendation: 'Gold flakes or sun-inspired art.' },
-  { name: 'Virgo', dates: 'Aug 23 - Sep 22', element: 'Earth', icon: '🌍', vibe: 'Pristine & Perfect', color: 'from-stone-400 to-stone-600', recommendation: 'Clean french tips with a twist.' },
-  { name: 'Libra', dates: 'Sep 23 - Oct 22', element: 'Air', icon: '💨', vibe: 'Balanced & Beautiful', color: 'from-pink-300 to-rose-400', recommendation: 'Soft aura gradients in pastel.' },
-  { name: 'Scorpio', dates: 'Oct 23 - Nov 21', element: 'Water', icon: '💧', vibe: 'Intense & Mysterious', color: 'from-purple-900 to-black', recommendation: 'Black void or blood red ombre.' },
-  { name: 'Sagittarius', dates: 'Nov 22 - Dec 21', element: 'Fire', icon: '🔥', vibe: 'Adventurous & Wild', color: 'from-purple-600 to-indigo-600', recommendation: 'Galaxy prints or constellation art.' },
-  { name: 'Capricorn', dates: 'Dec 22 - Jan 19', element: 'Earth', icon: '🌍', vibe: 'Ambitious & Structured', color: 'from-gray-700 to-gray-900', recommendation: 'Deep charcoal or classic tortie.' },
-  { name: 'Aquarius', dates: 'Jan 20 - Feb 18', element: 'Air', icon: '💨', vibe: 'Unique & Futurist', color: 'from-cyan-400 to-blue-500', recommendation: 'Electric blue or holographic silver.' },
-  { name: 'Pisces', dates: 'Feb 19 - Mar 20', element: 'Water', icon: '💧', vibe: 'Dreamy & Ethereal', color: 'from-teal-300 to-cyan-300', recommendation: 'Iridescent scales or water droplets.' },
+  { name: 'Aries', dates: 'Mar 21 - Apr 19', element: 'Fire', icon: 'Fire', vibe: 'Fierce & Unstoppable', color: 'from-red-500 to-orange-500', recommendation: 'Stiletto shape with bold chrome red.' },
+  { name: 'Taurus', dates: 'Apr 20 - May 20', element: 'Earth', icon: 'Earth', vibe: 'Luxurious & Grounded', color: 'from-green-500 to-emerald-700', recommendation: 'Square shape in matte forest green.' },
+  { name: 'Gemini', dates: 'May 21 - Jun 20', element: 'Air', icon: 'Air', vibe: 'Dual & Dynamic', color: 'from-yellow-300 to-yellow-500', recommendation: 'Mismatched hands or split designs.' },
+  { name: 'Cancer', dates: 'Jun 21 - Jul 22', element: 'Water', icon: 'Water', vibe: 'Intuitive & Moon-ruled', color: 'from-gray-200 to-blue-200', recommendation: 'Pearl finish or silver cat-eye.' },
+  { name: 'Leo', dates: 'Jul 23 - Aug 22', element: 'Fire', icon: 'Fire', vibe: 'Royal & Radiant', color: 'from-yellow-500 to-orange-400', recommendation: 'Gold flakes or sun-inspired art.' },
+  { name: 'Virgo', dates: 'Aug 23 - Sep 22', element: 'Earth', icon: 'Earth', vibe: 'Pristine & Perfect', color: 'from-stone-400 to-stone-600', recommendation: 'Clean french tips with a twist.' },
+  { name: 'Libra', dates: 'Sep 23 - Oct 22', element: 'Air', icon: 'Air', vibe: 'Balanced & Beautiful', color: 'from-pink-300 to-rose-400', recommendation: 'Soft aura gradients in pastel.' },
+  { name: 'Scorpio', dates: 'Oct 23 - Nov 21', element: 'Water', icon: 'Water', vibe: 'Intense & Mysterious', color: 'from-purple-900 to-black', recommendation: 'Black void or blood red ombre.' },
+  { name: 'Sagittarius', dates: 'Nov 22 - Dec 21', element: 'Fire', icon: 'Fire', vibe: 'Adventurous & Wild', color: 'from-purple-600 to-indigo-600', recommendation: 'Galaxy prints or constellation art.' },
+  { name: 'Capricorn', dates: 'Dec 22 - Jan 19', element: 'Earth', icon: 'Earth', vibe: 'Ambitious & Structured', color: 'from-gray-700 to-gray-900', recommendation: 'Deep charcoal or classic tortie.' },
+  { name: 'Aquarius', dates: 'Jan 20 - Feb 18', element: 'Air', icon: 'Air', vibe: 'Unique & Futurist', color: 'from-cyan-400 to-blue-500', recommendation: 'Electric blue or holographic silver.' },
+  { name: 'Pisces', dates: 'Feb 19 - Mar 20', element: 'Water', icon: 'Water', vibe: 'Dreamy & Ethereal', color: 'from-teal-300 to-cyan-300', recommendation: 'Iridescent scales or water droplets.' },
 ];
 
 useHead({

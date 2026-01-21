@@ -4,20 +4,22 @@
       
       <!-- Header -->
       <div class="text-center mb-16">
-        <h1 class="text-4xl font-light tracking-widest uppercase text-gray-900 mb-4">Your Wishlist</h1>
-        <p class="text-gray-500 text-sm font-light">{{ wishlistStore.wishlistCount }} items saved</p>
+        <h1 class="text-3xl font-light tracking-[0.2em] uppercase text-gray-900 mb-4">Your Wishlist</h1>
+        <p class="text-gray-500 text-xs font-light tracking-[0.15em] uppercase">{{ wishlistStore.wishlistCount }} items saved</p>
       </div>
 
       <!-- Empty State -->
       <div v-if="wishlistStore.wishlistCount === 0" class="text-center py-20">
         <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-50 flex items-center justify-center">
-          <span class="text-5xl">💫</span>
+          <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
         </div>
-        <h2 class="text-2xl font-light text-gray-900 mb-4">Your wishlist is empty</h2>
-        <p class="text-gray-500 mb-8 font-light">Start adding products you love</p>
+        <h2 class="text-2xl font-light text-gray-900 mb-4 tracking-[0.15em] uppercase">Your wishlist is empty</h2>
+        <p class="text-gray-500 mb-8 font-light text-sm tracking-[0.1em]">Start adding products you love</p>
         <NuxtLink 
           to="/shop"
-          class="inline-flex items-center bg-black text-white px-8 py-3 text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
+          class="btn-primary inline-flex items-center"
         >
           Explore Shop
         </NuxtLink>
@@ -27,10 +29,10 @@
       <div v-else>
         <!-- Actions Bar -->
         <div class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100">
-          <p class="text-xs text-gray-500 tracking-widest uppercase">{{ wishlistStore.wishlistCount }} Products</p>
+          <p class="text-xs text-gray-500 tracking-[0.15em] uppercase font-light">{{ wishlistStore.wishlistCount }} Products</p>
           <button 
             @click="moveAllToCart"
-            class="bg-black text-white px-6 py-3 text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all flex items-center gap-2"
+            class="btn-primary flex items-center gap-2"
           >
             Add All to Bag
           </button>
@@ -46,27 +48,29 @@
             <!-- Remove Button -->
             <button
               @click="wishlistStore.removeFromWishlist(product.id)"
-              class="absolute top-3 right-3 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-black transition-colors shadow-md"
+              class="absolute top-3 right-3 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-900 hover:opacity-50 transition-opacity shadow-soft border border-gray-200"
             >
-              ✕
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
             </button>
 
             <!-- Product Card -->
             <NuxtLink :to="`/product/${product.id}`">
-              <div class="aspect-[3/4] bg-gray-50 overflow-hidden mb-4">
+              <div class="aspect-[3/4] bg-gray-50 overflow-hidden mb-4 rounded-lg">
                 <img :src="product.image" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
             </NuxtLink>
 
             <div class="text-center">
               <NuxtLink :to="`/product/${product.id}`">
-                <h3 class="text-xs tracking-widest uppercase font-medium text-gray-900 hover:opacity-50 transition-opacity">{{ product.name }}</h3>
+                <h3 class="text-sm tracking-[0.1em] uppercase font-medium text-gray-900 hover:opacity-50 transition-opacity">{{ product.name }}</h3>
               </NuxtLink>
-              <p class="text-xs text-gray-500 mt-2 font-light">${{ product.price.toFixed(2) }}</p>
+              <p class="text-sm text-gray-900 mt-2 font-medium">${{ product.price.toFixed(2) }}</p>
               
               <button 
                 @click="addToCart(product)"
-                class="w-full mt-4 bg-black hover:bg-zinc-800 text-white py-2 px-4 text-[10px] tracking-[0.3em] uppercase transition-all"
+                class="btn-primary w-full mt-4"
               >
                 Add to Bag
               </button>

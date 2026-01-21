@@ -10,20 +10,22 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
         <!-- Modal -->
-        <div class="relative bg-white border border-gray-200 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div class="relative bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-soft-lg">
           <!-- Close Button -->
           <button
             @click="quickViewStore.closeQuickView()"
-            class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black hover:bg-zinc-800 text-white transition-colors"
+            class="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 hover:border-black text-gray-900 transition-all hover-lift"
           >
-            <span class="text-2xl">✕</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
           </button>
 
-          <div class="grid md:grid-cols-2 gap-8 p-8">
+          <div class="grid md:grid-cols-2 gap-12 p-12">
             <!-- Left: Image Gallery -->
             <div class="space-y-4">
               <!-- Main Image -->
-              <div class="aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+              <div class="aspect-square rounded-lg overflow-hidden bg-gray-50">
                 <img
                   :src="currentImage"
                   :alt="product.name"
@@ -40,7 +42,7 @@
                   :class="[
                     'flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all',
                     currentImageIndex === idx
-                      ? 'border-black shadow-lg'
+                      ? 'border-black'
                       : 'border-gray-200 hover:border-gray-400'
                   ]"
                 >
@@ -52,39 +54,41 @@
             <!-- Right: Product Info -->
             <div class="flex flex-col">
               <!-- Category & Rating -->
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-900">{{ product.category }}</span>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">{{ product.category }}</span>
                 <div class="flex items-center gap-1">
-                  <span class="text-yellow-400">⭐</span>
-                  <span class="text-sm text-gray-700">{{ product.rating }}</span>
-                  <span class="text-sm text-gray-500">({{ product.reviews?.length || 0 }})</span>
+                  <svg class="w-3 h-3 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                  <span class="text-xs text-gray-900 font-medium">{{ product.rating }}</span>
+                  <span class="text-xs text-gray-500">({{ product.reviews?.length || 0 }})</span>
                 </div>
               </div>
 
               <!-- Name -->
-              <h2 class="text-3xl font-light tracking-widest uppercase text-gray-900 mb-2">{{ product.name }}</h2>
+              <h2 class="text-2xl font-light tracking-[0.15em] uppercase text-gray-900 mb-2">{{ product.name }}</h2>
 
               <!-- Zodiac -->
-              <p class="text-sm text-gray-600 mb-4">{{ product.zodiac }}</p>
+              <p class="text-xs text-gray-500 mb-6 font-light tracking-[0.1em]">{{ product.zodiac }}</p>
 
               <!-- Price -->
               <div class="mb-6">
-                <span class="text-3xl font-light text-gray-900">${{ product.price }}</span>
+                <span class="text-2xl font-medium text-gray-900">${{ product.price }}</span>
               </div>
 
               <!-- Description -->
-              <p class="text-gray-700 mb-6 leading-relaxed">{{ product.description }}</p>
+              <p class="text-sm text-gray-600 mb-8 leading-relaxed font-light">{{ product.description }}</p>
 
               <!-- Size Selection -->
               <div v-if="product.variants && product.variants.length > 0" class="mb-6">
-                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Select Size</label>
+                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-3">Select Size</label>
                 <div class="flex gap-2">
                   <button
                     v-for="variant in product.variants"
                     :key="variant.size"
                     @click="selectedSize = variant.size"
                     :class="[
-                      'px-4 py-2 rounded-lg border transition-all',
+                      'px-4 py-2 rounded-lg border text-xs tracking-[0.1em] uppercase transition-all font-light',
                       selectedSize === variant.size
                         ? 'border-black bg-black text-white'
                         : 'border-gray-200 text-gray-600 hover:border-gray-400'
@@ -96,19 +100,19 @@
               </div>
 
               <!-- Quantity -->
-              <div class="mb-6">
-                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Quantity</label>
-                <div class="flex items-center gap-3">
+              <div class="mb-8">
+                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-3">Quantity</label>
+                <div class="flex items-center gap-3 bg-gray-50 rounded-lg px-4 py-2 w-fit">
                   <button
                     @click="quantity = Math.max(1, quantity - 1)"
-                    class="w-10 h-10 rounded-lg border border-gray-200 hover:border-gray-400 text-gray-900 transition-colors"
+                    class="w-8 h-8 flex items-center justify-center text-gray-900 hover:opacity-50 transition-opacity"
                   >
                     −
                   </button>
-                  <span class="text-xl font-medium text-gray-900 w-12 text-center">{{ quantity }}</span>
+                  <span class="text-sm font-medium text-gray-900 w-8 text-center">{{ quantity }}</span>
                   <button
                     @click="quantity++"
-                    class="w-10 h-10 rounded-lg border border-gray-200 hover:border-gray-400 text-gray-900 transition-colors"
+                    class="w-8 h-8 flex items-center justify-center text-gray-900 hover:opacity-50 transition-opacity"
                   >
                     +
                   </button>
@@ -119,31 +123,33 @@
               <div class="flex gap-3 mt-auto">
                 <button
                   @click="handleAddToCart"
-                  class="flex-1 bg-black text-white py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
+                  class="btn-primary flex-1"
                 >
-                  Add to Cart 🛒
+                  Add to Bag
                 </button>
                 <button
                   @click="handleToggleWishlist"
                   :class="[
-                    'w-14 h-14 rounded-lg border transition-all',
+                    'w-14 h-14 rounded-lg border transition-all hover-lift',
                     wishlistStore.isInWishlist(product.id)
-                      ? 'border-gray-900 bg-gray-100 text-2xl'
-                      : 'border-gray-200 hover:border-gray-900 text-2xl'
+                      ? 'border-black bg-gray-50'
+                      : 'border-gray-200 hover:border-gray-400'
                   ]"
                 >
-                  {{ wishlistStore.isInWishlist(product.id) ? '💖' : '🤍' }}
+                  <svg class="w-5 h-5 mx-auto" :fill="wishlistStore.isInWishlist(product.id) ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
                 </button>
               </div>
 
               <!-- View Full Details -->
-              <NuxtLink
-                :to="`/product/${product.id}`"
-                @click="quickViewStore.closeQuickView()"
-                class="mt-4 text-center text-sm text-gray-900 hover:opacity-50 transition-opacity"
-              >
-                View Full Details →
-              </NuxtLink>
+            <NuxtLink
+              :to="`/product/${product.id}`"
+              @click="quickViewStore.closeQuickView()"
+              class="mt-6 text-center text-xs text-gray-900 hover:opacity-50 transition-opacity tracking-[0.15em] uppercase font-light"
+            >
+              View Full Details →
+            </NuxtLink>
             </div>
           </div>
         </div>
@@ -197,7 +203,7 @@ const handleAddToCart = () => {
     cartStore.addToCart(product.value, selectedSize.value);
   }
   
-  toastStore.success(`${quantity.value}x ${product.value.name} added to cart! 🛒`);
+  toastStore.success(`${quantity.value}x ${product.value.name} added to cart!`);
   quickViewStore.closeQuickView();
 };
 

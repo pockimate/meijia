@@ -3,35 +3,42 @@
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
       <div class="text-center mb-20">
-        <h1 class="text-3xl font-light tracking-widest uppercase">Signature Collection</h1>
+        <h1 class="text-3xl font-light tracking-[0.2em] uppercase mb-2">Signature Collection</h1>
+        <p class="text-xs text-gray-500 tracking-[0.15em] uppercase font-light">Curated for the cosmos</p>
         
         <!-- Filter Tabs -->
-        <div class="flex justify-center space-x-6 mt-8 text-[10px] tracking-widest uppercase">
+        <div class="flex justify-center space-x-8 mt-12 text-xs tracking-[0.15em] uppercase">
           <button 
             v-for="cat in filters" 
             :key="cat" 
             @click="selectedFilter = cat"
             :class="[
-              'transition-all pb-1',
+              'transition-all pb-2 font-light relative group',
               selectedFilter === cat 
-                ? 'text-black border-b border-black' 
+                ? 'text-black' 
                 : 'text-gray-400 hover:text-black'
             ]"
           >
             {{ cat === 'all' ? 'All Styles' : cat.charAt(0).toUpperCase() + cat.slice(1) }}
+            <span 
+              :class="[
+                'absolute bottom-0 left-0 h-px bg-black transition-all duration-300',
+                selectedFilter === cat ? 'w-full' : 'w-0 group-hover:w-full'
+              ]"
+            ></span>
           </button>
         </div>
       </div>
 
       <!-- Product Count & Sort -->
       <div class="flex justify-between items-center mb-12">
-        <p class="text-[10px] text-gray-400 tracking-widest uppercase">
+        <p class="text-xs text-gray-500 tracking-[0.15em] uppercase font-light">
           {{ filteredProducts.length }} Products
         </p>
         
         <select 
           v-model="sortBy"
-          class="bg-white border border-gray-200 text-[10px] tracking-widest uppercase px-4 py-2 focus:outline-none focus:border-black transition-colors"
+          class="input-base py-2 text-xs tracking-[0.15em] uppercase font-light"
         >
           <option value="default">Default</option>
           <option value="price-asc">Price: Low to High</option>

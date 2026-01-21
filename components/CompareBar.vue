@@ -9,7 +9,9 @@
           <!-- Left: Products -->
           <div class="flex items-center gap-3 flex-1 overflow-x-auto">
             <div class="flex items-center gap-2 text-gray-900 font-medium whitespace-nowrap">
-              <span class="text-xl">📊</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
               <span>Compare ({{ compareStore.compareCount }}/{{ compareStore.maxItems }})</span>
             </div>
 
@@ -30,7 +32,9 @@
                   @click="compareStore.removeFromCompare(product.id)"
                   class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  ✕
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
                 </button>
               </div>
 
@@ -55,7 +59,7 @@
             </button>
             <NuxtLink
               to="/compare"
-              class="bg-black text-white px-6 py-3 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all whitespace-nowrap"
+              class="bg-black text-white px-6 py-3 rounded-lg text-xs tracking-[0.2em] uppercase hover:bg-zinc-800 transition-all whitespace-nowrap"
             >
               Compare Now →
             </NuxtLink>

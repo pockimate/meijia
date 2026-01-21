@@ -5,7 +5,9 @@
       <!-- Redirect if not logged in -->
       <div v-if="!authStore.isLoggedIn" class="text-center py-20">
         <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-          <span class="text-5xl">🔒</span>
+          <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
         </div>
         <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-4">Please Sign In</h2>
         <p class="text-gray-600 mb-8">You need to be logged in to view your account.</p>
@@ -52,29 +54,39 @@
                 <button 
                   @click="activeTab = 'profile'"
                   :class="[
-                    'w-full text-left px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
+                    'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
                     activeTab === 'profile' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
                   ]"
                 >
-                  👤 Profile
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  </svg>
+                  Profile
                 </button>
                 <button 
                   @click="activeTab = 'orders'"
                   :class="[
-                    'w-full text-left px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
+                    'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
                     activeTab === 'orders' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
                   ]"
                 >
-                  📦 Orders
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                  </svg>
+                  Orders
                 </button>
                 <button 
                   @click="activeTab = 'addresses'"
                   :class="[
-                    'w-full text-left px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
+                    'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-[10px] tracking-[0.2em] uppercase font-light',
                     activeTab === 'addresses' ? 'bg-black text-white' : 'text-gray-600 hover:bg-gray-100'
                   ]"
                 >
-                  📍 Addresses
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  Addresses
                 </button>
               </nav>
             </div>
@@ -89,7 +101,7 @@
               
               <form @submit.prevent="handleUpdateProfile" class="space-y-6">
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Name</label>
+                  <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Name</label>
                   <input 
                     v-model="profileForm.name" 
                     type="text" 
@@ -98,7 +110,7 @@
                 </div>
 
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Email</label>
+                  <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Email</label>
                   <input 
                     v-model="profileForm.email" 
                     type="email" 
@@ -107,7 +119,7 @@
                 </div>
 
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Zodiac Sign</label>
+                  <label class="block text-xs tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Zodiac Sign</label>
                   <select 
                     v-model="profileForm.zodiacSign"
                     class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
@@ -119,7 +131,7 @@
 
                 <button 
                   type="submit"
-                  class="bg-black text-white px-6 py-3 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
+                  class="bg-black text-white px-6 py-3 rounded-lg text-xs tracking-[0.2em] uppercase hover:bg-zinc-800 transition-all"
                 >
                   Save Changes
                 </button>
@@ -132,7 +144,11 @@
                 <h3 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-6">Order History</h3>
                 
                 <div v-if="ordersStore.allOrders.length === 0" class="text-center py-12">
-                  <span class="text-5xl mb-4 block">📦</span>
+                  <div class="w-16 h-16 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                    </svg>
+                  </div>
                   <p class="text-gray-600 mb-4">No orders yet</p>
                   <NuxtLink to="/shop" class="text-gray-900 hover:opacity-50 transition-opacity">
                     Start Shopping →
@@ -183,7 +199,12 @@
                 <h3 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-6">Saved Addresses</h3>
 
                 <div v-if="ordersStore.allAddresses.length === 0" class="text-center py-12">
-                  <span class="text-5xl mb-4 block">📍</span>
+                  <div class="w-16 h-16 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
                   <p class="text-gray-600 mb-4">No saved addresses</p>
                 </div>
 

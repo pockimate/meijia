@@ -4,12 +4,14 @@
       
       <!-- Empty Cart State -->
       <div v-if="cartStore.cartItems.length === 0" class="max-w-md mx-auto text-center py-20">
-        <div class="w-24 h-24 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
-          <span class="text-5xl">🚀</span>
+        <div class="w-24 h-24 mx-auto rounded-full bg-gray-50 flex items-center justify-center mb-6">
+          <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
         </div>
-        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-4">Your orbit is empty</h2>
-        <p class="text-gray-600 mb-8">Add some cosmic items to your cart before checking out.</p>
-        <NuxtLink to="/shop" class="inline-flex items-center bg-black text-white px-8 py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all">
+        <h2 class="text-2xl font-light tracking-[0.2em] uppercase text-gray-900 mb-4">Your bag is empty</h2>
+        <p class="text-sm text-gray-500 mb-8 font-light tracking-[0.1em]">Add some items to your bag before checking out.</p>
+        <NuxtLink to="/shop" class="btn-primary inline-flex items-center">
           Explore Shop →
         </NuxtLink>
       </div>
@@ -19,21 +21,21 @@
         
         <!-- Left: Form -->
         <div>
-          <h1 class="text-3xl font-light tracking-widest uppercase text-gray-900 mb-8">Checkout</h1>
+          <h1 class="text-3xl font-light tracking-[0.2em] uppercase text-gray-900 mb-8">Checkout</h1>
           
           <form @submit.prevent="handleSubmit" class="space-y-8">
             
             <!-- Contact Information -->
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-4">Contact Information</h2>
+            <div class="card-base">
+              <h2 class="text-lg font-light tracking-[0.15em] uppercase text-gray-900 mb-6">Contact Information</h2>
               <div class="space-y-4">
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Email</label>
+                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Email</label>
                   <input 
                     v-model="form.email" 
                     type="email" 
                     required
-                    class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                    class="input-base"
                     placeholder="cosmic@example.com"
                   />
                 </div>
@@ -41,72 +43,72 @@
             </div>
 
             <!-- Shipping Address -->
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-              <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-4">Shipping Address</h2>
+            <div class="card-base">
+              <h2 class="text-lg font-light tracking-[0.15em] uppercase text-gray-900 mb-6">Shipping Address</h2>
               <div class="space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">First Name</label>
+                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">First Name</label>
                     <input 
                       v-model="form.firstName" 
                       type="text" 
                       required
-                      class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                      class="input-base"
                     />
                   </div>
                   <div>
-                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Last Name</label>
+                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Last Name</label>
                     <input 
                       v-model="form.lastName" 
                       type="text" 
                       required
-                      class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                      class="input-base"
                     />
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Address</label>
+                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Address</label>
                   <input 
                     v-model="form.address" 
                     type="text" 
                     required
-                    class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                    class="input-base"
                   />
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">City</label>
+                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">City</label>
                     <input 
                       v-model="form.city" 
                       type="text" 
                       required
-                      class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                      class="input-base"
                     />
                   </div>
                   <div>
-                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Postal Code</label>
+                    <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Postal Code</label>
                     <input 
                       v-model="form.postalCode" 
                       type="text" 
                       required
-                      class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                      class="input-base"
                     />
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Country</label>
+                  <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mb-2">Country</label>
                   <input 
                     v-model="form.country" 
                     type="text" 
                     required
-                    class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
+                    class="input-base"
                   />
                 </div>
               </div>
             </div>
 
             <!-- Payment Method -->
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+            <div class="card-base">
               <PaymentMethodSelector />
               
               <!-- Card Payment Form -->
@@ -116,33 +118,32 @@
               
               <!-- PayPal Notice -->
               <div v-else-if="paymentStore.selectedMethod === 'paypal'" class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p class="text-blue-600 text-sm flex items-center gap-2">
-                  <span>💰</span>
-                  <span>You will be redirected to PayPal to complete your payment</span>
+                <p class="text-blue-600 text-xs font-light">
+                  You will be redirected to PayPal to complete your payment
                 </p>
               </div>
               
               <!-- Apple Pay Notice -->
               <div v-else-if="paymentStore.selectedMethod === 'apple-pay'" class="mt-6 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-                <p class="text-gray-700 text-sm flex items-center gap-2">
-                  <span>📱</span>
-                  <span>Click "Complete Order" to pay with Apple Pay</span>
+                <p class="text-gray-700 text-xs font-light">
+                  Click "Complete Order" to pay with Apple Pay
                 </p>
               </div>
               
               <!-- Google Pay Notice -->
               <div v-else-if="paymentStore.selectedMethod === 'google-pay'" class="mt-6 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-                <p class="text-gray-700 text-sm flex items-center gap-2">
-                  <span>🤖</span>
-                  <span>Click "Complete Order" to pay with Google Pay</span>
+                <p class="text-gray-700 text-xs font-light">
+                  Click "Complete Order" to pay with Google Pay
                 </p>
               </div>
             </div>
 
             <!-- Payment Error -->
             <div v-if="paymentStore.paymentError" class="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p class="text-red-600 text-sm flex items-center gap-2">
-                <span>⚠️</span>
+              <p class="text-red-600 text-xs flex items-center gap-2 font-light">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
                 <span>{{ paymentStore.paymentError }}</span>
               </p>
             </div>
@@ -150,36 +151,35 @@
             <button 
               type="submit"
               :disabled="paymentStore.isProcessing || !canSubmit"
-              class="w-full bg-black text-white px-8 py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              class="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               <span v-if="paymentStore.isProcessing">
-                <span class="inline-block animate-spin mr-2">⏳</span>
                 Processing Payment...
               </span>
-              <span v-else>🚀 Complete Order</span>
+              <span v-else>Complete Order</span>
             </button>
           </form>
         </div>
 
         <!-- Right: Order Summary -->
         <div>
-          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 sticky top-24">
-            <h2 class="text-xl font-light tracking-widest uppercase text-gray-900 mb-6">Order Summary</h2>
+          <div class="card-base sticky top-24">
+            <h2 class="text-lg font-light tracking-[0.15em] uppercase text-gray-900 mb-6">Order Summary</h2>
             
             <div class="space-y-4 mb-6 max-h-96 overflow-y-auto">
-              <div v-for="item in cartStore.cartItems" :key="item.id" class="flex gap-4 pb-4 border-b border-gray-200">
+              <div v-for="item in cartStore.cartItems" :key="item.id" class="flex gap-4 pb-4 border-b border-gray-200 last:border-0">
                 <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200">
                   <img :src="item.image" :alt="item.name" class="h-full w-full object-cover" />
                 </div>
                 <div class="flex-1">
-                  <h3 class="text-gray-900 font-light tracking-widest uppercase text-sm">{{ item.name }}</h3>
-                  <p class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 capitalize mt-1">
+                  <h3 class="text-gray-900 font-light tracking-[0.1em] uppercase text-sm">{{ item.name }}</h3>
+                  <p class="text-[10px] tracking-[0.15em] uppercase font-light text-gray-500 capitalize mt-1">
                     {{ item.category }}
                     <span v-if="item.selectedSize" class="ml-2">• Size: {{ item.selectedSize }}</span>
                   </p>
                   <div class="flex justify-between items-center mt-2">
-                    <span class="text-sm text-gray-600">Qty: {{ item.quantity }}</span>
-                    <span class="text-gray-900 font-mono">${{ (item.price * item.quantity).toFixed(2) }}</span>
+                    <span class="text-xs text-gray-500 font-light">Qty: {{ item.quantity }}</span>
+                    <span class="text-sm text-gray-900 font-medium">${{ (item.price * item.quantity).toFixed(2) }}</span>
                   </div>
                 </div>
               </div>
@@ -191,53 +191,46 @@
             </div>
 
             <div class="space-y-3 border-t border-gray-200 pt-6">
-              <div class="flex justify-between text-gray-600">
+              <div class="flex justify-between text-xs text-gray-500 font-light tracking-[0.1em] uppercase">
                 <span>Subtotal</span>
-                <span class="font-mono">${{ cartStore.cartTotal.toFixed(2) }}</span>
+                <span class="font-medium text-gray-900">${{ cartStore.cartTotal.toFixed(2) }}</span>
               </div>
               
               <!-- Discounts -->
-              <div v-if="discounts.couponDiscount > 0" class="flex justify-between text-green-600">
-                <span class="flex items-center gap-1">
-                  <span>🎉</span>
-                  <span>Coupon Discount</span>
-                </span>
-                <span class="font-mono">-${{ discounts.couponDiscount.toFixed(2) }}</span>
+              <div v-if="discounts.couponDiscount > 0" class="flex justify-between text-xs text-green-600 font-light tracking-[0.1em] uppercase">
+                <span>Coupon Discount</span>
+                <span class="font-medium">-${{ discounts.couponDiscount.toFixed(2) }}</span>
               </div>
-              <div v-if="discounts.promotionDiscount > 0" class="flex justify-between text-gray-900">
-                <span class="flex items-center gap-1">
-                  <span>⚡</span>
-                  <span>Promotion Discount</span>
-                </span>
-                <span class="font-mono">-${{ discounts.promotionDiscount.toFixed(2) }}</span>
+              <div v-if="discounts.promotionDiscount > 0" class="flex justify-between text-xs text-gray-900 font-light tracking-[0.1em] uppercase">
+                <span>Promotion Discount</span>
+                <span class="font-medium">-${{ discounts.promotionDiscount.toFixed(2) }}</span>
               </div>
               
-              <div class="flex justify-between text-gray-600">
+              <div class="flex justify-between text-xs text-gray-500 font-light tracking-[0.1em] uppercase">
                 <span>Shipping</span>
-                <span v-if="discounts.freeShipping" class="text-green-600 font-mono">FREE</span>
-                <span v-else class="font-mono">${{ shipping.toFixed(2) }}</span>
+                <span v-if="discounts.freeShipping" class="text-green-600 font-medium">FREE</span>
+                <span v-else class="font-medium text-gray-900">${{ shipping.toFixed(2) }}</span>
               </div>
-              <div class="flex justify-between text-gray-600">
+              <div class="flex justify-between text-xs text-gray-500 font-light tracking-[0.1em] uppercase">
                 <span>Tax</span>
-                <span class="font-mono">${{ tax.toFixed(2) }}</span>
+                <span class="font-medium text-gray-900">${{ tax.toFixed(2) }}</span>
               </div>
               
               <!-- Total Savings -->
-              <div v-if="discounts.totalDiscount > 0" class="flex justify-between text-green-600 text-sm pt-2 border-t border-gray-100">
+              <div v-if="discounts.totalDiscount > 0" class="flex justify-between text-xs text-green-600 pt-2 border-t border-gray-100 font-light tracking-[0.1em] uppercase">
                 <span>Total Savings</span>
-                <span class="font-mono font-bold">-${{ discounts.totalDiscount.toFixed(2) }}</span>
+                <span class="font-medium">-${{ discounts.totalDiscount.toFixed(2) }}</span>
               </div>
               
-              <div class="flex justify-between text-xl font-light text-gray-900 pt-3 border-t border-gray-200">
+              <div class="flex justify-between text-lg font-medium text-gray-900 pt-3 border-t border-gray-200 tracking-[0.1em] uppercase">
                 <span>Total</span>
-                <span class="font-mono">${{ total.toFixed(2) }}</span>
+                <span>${{ total.toFixed(2) }}</span>
               </div>
             </div>
 
             <div class="mt-6 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-              <p class="text-gray-700 text-xs flex items-center gap-2">
-                <span>✨</span>
-                <span>Free shipping on orders over $50!</span>
+              <p class="text-gray-700 text-xs font-light tracking-[0.1em]">
+                Free shipping on orders over $50
               </p>
             </div>
           </div>
@@ -361,7 +354,7 @@ const handleSubmit = async () => {
     });
   }
   
-  toastStore.success('Order placed successfully! 🚀');
+  toastStore.success('Order placed successfully!');
   
   // Clear cart and redirect to success page
   cartStore.clearCart();

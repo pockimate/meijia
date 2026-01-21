@@ -4,7 +4,9 @@
       <!-- Logo -->
       <div class="text-center mb-8">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-astro-purple to-astro-teal mb-4">
-          <span class="text-3xl">🔐</span>
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
         </div>
         <h1 class="text-3xl font-serif font-bold text-white mb-2">Admin Portal</h1>
         <p class="text-gray-400">Sign in to access the dashboard</p>
@@ -40,7 +42,9 @@
           <!-- Error Message -->
           <div v-if="errorMessage" class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
             <p class="text-red-400 text-sm flex items-center gap-2">
-              <span>⚠️</span>
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
               <span>{{ errorMessage }}</span>
             </p>
           </div>

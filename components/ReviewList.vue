@@ -1,13 +1,13 @@
 <template>
   <div class="space-y-6">
     <!-- Controls -->
-    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-gray-50 rounded-lg p-4 border border-gray-200">
+    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between card-base">
       <!-- Sort -->
       <div class="flex items-center gap-3 flex-wrap">
-        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-600">Sort by:</label>
+        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Sort by:</label>
         <select
           v-model="reviewsStore.sortBy"
-          class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
+          class="input-base py-2 text-xs"
         >
           <option value="newest">Newest First</option>
           <option value="oldest">Oldest First</option>
@@ -19,25 +19,25 @@
 
       <!-- Filter -->
       <div class="flex items-center gap-3 flex-wrap">
-        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-600">Filter:</label>
+        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Filter:</label>
         <select
           v-model="reviewsStore.filterBy"
-          class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
+          class="input-base py-2 text-xs"
         >
           <option value="all">All Reviews</option>
-          <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
-          <option value="4">⭐⭐⭐⭐ (4 stars)</option>
-          <option value="3">⭐⭐⭐ (3 stars)</option>
-          <option value="2">⭐⭐ (2 stars)</option>
-          <option value="1">⭐ (1 star)</option>
-          <option value="withPhotos">📷 With Photos</option>
-          <option value="verified">✓ Verified Purchase</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+          <option value="withPhotos">With Photos</option>
+          <option value="verified">Verified Purchase</option>
         </select>
       </div>
     </div>
 
     <!-- Reviews Count -->
-    <div class="text-gray-600 text-sm">
+    <div class="text-gray-500 text-xs tracking-[0.15em] uppercase font-light">
       Showing <span class="text-gray-900 font-medium">{{ processedReviews.length }}</span> of 
       <span class="text-gray-900 font-medium">{{ reviews.length }}</span> reviews
     </div>
@@ -47,41 +47,42 @@
       <div
         v-for="review in processedReviews"
         :key="review.id"
-        class="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-gray-300 transition-colors"
+        class="card-base hover-lift"
       >
         <!-- Header -->
         <div class="flex items-start justify-between mb-4">
           <div class="flex items-start gap-4">
             <!-- Avatar -->
-            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-medium text-sm flex-shrink-0">
               {{ review.user.charAt(0).toUpperCase() }}
             </div>
 
             <div>
               <!-- User & Verified -->
               <div class="flex items-center gap-2 mb-1">
-                <h4 class="font-medium text-gray-900">{{ review.user }}</h4>
-                <span v-if="review.verified" class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full border border-green-200">
-                  ✓ Verified
+                <h4 class="font-medium text-gray-900 text-sm">{{ review.user }}</h4>
+                <span v-if="review.verified" class="text-[9px] bg-black text-white px-2 py-0.5 rounded-full tracking-[0.1em] uppercase">
+                  Verified
                 </span>
               </div>
 
               <!-- Rating & Date -->
-              <div class="flex items-center gap-3 text-sm">
-                <div class="flex items-center">
-                  <span v-for="i in 5" :key="i" :class="i <= review.rating ? 'text-yellow-400' : 'text-gray-300'">
-                    ⭐
-                  </span>
+              <div class="flex items-center gap-3 text-xs">
+                <div class="flex items-center gap-1">
+                  <svg class="w-3 h-3 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                  <span class="text-gray-900 font-medium">{{ review.rating }}</span>
                 </div>
-                <span class="text-gray-500">{{ formatDate(review.date) }}</span>
-                <span v-if="review.zodiac" class="text-gray-500">{{ review.zodiac }}</span>
+                <span class="text-gray-500 font-light">{{ formatDate(review.date) }}</span>
+                <span v-if="review.zodiac" class="text-gray-500 font-light">{{ review.zodiac }}</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Review Text -->
-        <p class="text-gray-700 leading-relaxed mb-4">{{ review.text }}</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4 font-light">{{ review.text }}</p>
 
         <!-- Images -->
         <div v-if="review.images && review.images.length > 0" class="mb-4">
@@ -98,28 +99,28 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center gap-4 pt-4 border-t border-gray-200">
+        <div class="flex items-center gap-6 pt-4 border-t border-gray-200">
           <button
             @click="handleLike(review.id)"
             :class="[
-              'flex items-center gap-2 text-sm transition-colors',
+              'flex items-center gap-2 text-xs transition-opacity tracking-[0.1em] uppercase font-light',
               reviewsStore.isLiked(review.id)
                 ? 'text-gray-900'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-500 hover:opacity-50'
             ]"
           >
-            <span class="text-lg">{{ reviewsStore.isLiked(review.id) ? '❤️' : '🤍' }}</span>
+            <svg class="w-4 h-4" :fill="reviewsStore.isLiked(review.id) ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
             <span>Helpful ({{ (review.helpful || 0) + (reviewsStore.isLiked(review.id) ? 1 : 0) }})</span>
           </button>
 
-          <button class="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">
-            <span>💬</span>
-            <span>Reply</span>
+          <button class="flex items-center gap-2 text-xs text-gray-500 hover:opacity-50 transition-opacity tracking-[0.1em] uppercase font-light">
+            Reply
           </button>
 
-          <button class="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition-colors ml-auto">
-            <span>🚩</span>
-            <span>Report</span>
+          <button class="flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors ml-auto tracking-[0.1em] uppercase font-light">
+            Report
           </button>
         </div>
       </div>
@@ -128,7 +129,9 @@
     <!-- Empty State -->
     <div v-else class="text-center py-12">
       <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
-        <span class="text-4xl">💬</span>
+        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
       </div>
       <p class="text-gray-600">No reviews match your filters</p>
       <button
@@ -151,7 +154,9 @@
             @click="closeImageModal"
             class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
           >
-            <span class="text-2xl">✕</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
           </button>
 
           <div class="relative max-w-4xl w-full" @click.stop>

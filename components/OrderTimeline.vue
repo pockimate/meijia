@@ -8,16 +8,16 @@
           :key="step.status"
           :class="[
             'text-xs font-medium',
-            getStepIndex(currentStatus) >= index ? 'text-white' : 'text-gray-500'
+            getStepIndex(currentStatus) >= index ? 'text-gray-900' : 'text-gray-400'
           ]"
         >
           {{ step.label }}
         </span>
       </div>
       
-      <div class="relative h-2 bg-white/10 rounded-full overflow-hidden">
+      <div class="relative h-2 bg-gray-200 rounded-full overflow-hidden">
         <div
-          class="absolute top-0 left-0 h-full bg-gradient-to-r from-astro-purple to-astro-teal transition-all duration-500"
+          class="absolute top-0 left-0 h-full bg-black transition-all duration-500"
           :style="{ width: progressWidth }"
         ></div>
       </div>
@@ -30,8 +30,8 @@
           :class="[
             'w-4 h-4 rounded-full border-2 transition-all',
             getStepIndex(currentStatus) >= index
-              ? 'bg-astro-purple border-astro-purple shadow-lg shadow-astro-purple/50'
-              : 'bg-astro-bg border-white/20'
+              ? 'bg-black border-black'
+              : 'bg-white border-gray-300'
           ]"
         ></div>
       </div>
@@ -50,56 +50,58 @@
             :class="[
               'w-10 h-10 rounded-full flex items-center justify-center',
               index === 0
-                ? 'bg-astro-purple/20 border-2 border-astro-purple'
-                : 'bg-white/5 border border-white/10'
+                ? 'bg-black text-white border-2 border-black'
+                : 'bg-gray-100 border border-gray-200 text-gray-600'
             ]"
           >
-            <span class="text-lg">{{ event.icon }}</span>
+            <span class="text-sm">{{ event.icon }}</span>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="flex-1 pb-6 border-l-2 border-white/10 pl-4 -ml-5">
+        <div class="flex-1 pb-6 border-l-2 border-gray-200 pl-4 -ml-5">
           <div class="flex items-start justify-between mb-1">
             <h4
               :class="[
                 'font-medium',
-                index === 0 ? 'text-white' : 'text-gray-400'
+                index === 0 ? 'text-gray-900' : 'text-gray-600'
               ]"
             >
               {{ event.title }}
             </h4>
             <span class="text-xs text-gray-500">{{ formatTime(event.timestamp) }}</span>
           </div>
-          <p class="text-sm text-gray-400">{{ event.description }}</p>
+          <p class="text-sm text-gray-600">{{ event.description }}</p>
           <p v-if="event.location" class="text-xs text-gray-500 mt-1">
-            📍 {{ event.location }}
+            {{ event.location }}
           </p>
         </div>
       </div>
     </div>
 
     <!-- Estimated Delivery -->
-    <div v-if="estimatedDelivery" class="bg-astro-teal/10 border border-astro-teal/30 rounded-xl p-4">
+    <div v-if="estimatedDelivery" class="bg-gray-100 border border-gray-200 rounded-lg p-4">
       <div class="flex items-center gap-3">
-        <span class="text-2xl">📦</span>
+        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+        </svg>
         <div>
-          <p class="text-sm font-medium text-white">Estimated Delivery</p>
-          <p class="text-xs text-gray-400">{{ formatDate(estimatedDelivery) }}</p>
+          <p class="text-sm font-medium text-gray-900">Estimated Delivery</p>
+          <p class="text-xs text-gray-600">{{ formatDate(estimatedDelivery) }}</p>
         </div>
       </div>
     </div>
 
     <!-- Tracking Number -->
-    <div v-if="trackingNumber" class="bg-white/5 border border-white/10 rounded-xl p-4">
+    <div v-if="trackingNumber" class="bg-gray-100 border border-gray-200 rounded-lg p-4">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-xs text-gray-400 mb-1">Tracking Number</p>
-          <p class="font-mono text-sm text-white">{{ trackingNumber }}</p>
+          <p class="text-xs text-gray-600 mb-1">Tracking Number</p>
+          <p class="font-mono text-sm text-gray-900">{{ trackingNumber }}</p>
         </div>
         <button
           @click="copyTrackingNumber"
-          class="text-astro-teal hover:text-white transition-colors text-sm"
+          class="text-gray-900 hover:opacity-50 transition-opacity text-sm"
         >
           Copy
         </button>
@@ -171,7 +173,7 @@ const formatDate = (dateString: string) => {
 const copyTrackingNumber = () => {
   if (props.trackingNumber) {
     navigator.clipboard.writeText(props.trackingNumber);
-    toastStore.success('Tracking number copied! 📋');
+    toastStore.success('Tracking number copied!');
   }
 };
 </script>

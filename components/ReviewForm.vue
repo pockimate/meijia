@@ -78,7 +78,7 @@ const zodiacSigns = [
 const handleSubmit = () => {
   // In a real app, this would send to an API
   console.log('Review submitted:', form.value);
-  alert('Thank you for your review! 🌟');
+  alert('Thank you for your review!');
   
   // Reset form
   form.value = {
