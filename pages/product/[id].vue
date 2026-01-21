@@ -1,22 +1,22 @@
 <template>
-  <div v-if="product" class="bg-astro-bg min-h-screen py-8 md:py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div v-if="product" class="bg-white min-h-screen pt-32 px-8 lg:px-12">
+    <div class="max-w-6xl mx-auto">
       
-      <nav class="flex items-center text-sm text-gray-500 mb-8 font-mono">
-        <NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink>
+      <!-- Breadcrumb -->
+      <nav class="flex items-center text-[10px] text-gray-400 mb-12 tracking-widest uppercase">
+        <NuxtLink to="/" class="hover:text-black transition-opacity">Home</NuxtLink>
         <span class="mx-2">/</span>
-        <NuxtLink to="/shop" class="hover:text-white transition-colors">Shop</NuxtLink>
+        <NuxtLink to="/shop" class="hover:text-black transition-opacity">Shop</NuxtLink>
         <span class="mx-2">/</span>
-        <span class="text-astro-teal">{{ product.name }}</span>
+        <span class="text-black">{{ product.name }}</span>
       </nav>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div class="grid md:grid-cols-2 gap-20 mb-24">
         
-        <!-- Left: Image Gallery -->
+        <!-- Left: Image -->
         <div>
-          <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-astro-card mb-4">
-            <img :src="selectedImage" :alt="product.name" class="w-full aspect-square object-cover" />
-            <span v-if="product.isNew" class="absolute top-4 left-4 bg-astro-teal text-astro-bg text-xs px-3 py-1 uppercase tracking-widest font-bold rounded-sm">New Drop</span>
+          <div class="aspect-[3/4] bg-gray-50 mb-4">
+            <img :src="selectedImage" :alt="product.name" class="w-full h-full object-cover" />
           </div>
           
           <!-- Gallery Thumbnails -->
@@ -26,36 +26,44 @@
               :key="idx"
               @click="selectedImage = img"
               :class="[
-                'relative rounded-lg overflow-hidden border-2 transition-all',
-                selectedImage === img ? 'border-astro-purple' : 'border-white/10 hover:border-white/30'
+                'aspect-square bg-gray-50 overflow-hidden border transition-all',
+                selectedImage === img ? 'border-black' : 'border-gray-200 hover:border-gray-400'
               ]"
             >
-              <img :src="img" :alt="`${product.name} view ${idx + 1}`" class="w-full aspect-square object-cover" />
+              <img :src="img" :alt="`${product.name} view ${idx + 1}`" class="w-full h-full object-cover" />
             </button>
           </div>
         </div>
 
         <!-- Right: Product Info -->
-        <div class="flex flex-col">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-astro-teal text-xs font-bold tracking-[0.2em] uppercase">{{ product.category }}</span>
-            <WishlistButton :product="product" />
+        <div class="flex flex-col justify-center space-y-8">
+          <div>
+            <span class="text-[10px] tracking-widest text-gray-400 uppercase">{{ product.category }}</span>
+            <h1 class="text-4xl font-light tracking-tighter mt-2 uppercase">{{ product.name }}</h1>
+            <p class="text-xl mt-4 font-light">${{ product.price.toFixed(2) }}</p>
           </div>
-          <h1 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">{{ product.name }}</h1>
-          
-          <div class="flex items-center gap-4 mb-6">
-            <p class="text-2xl font-mono text-astro-purple">${{ product.price.toFixed(2) }}</p>
-            <div class="flex items-center border-l border-white/10 pl-4">
-              <span class="text-astro-teal text-sm">{{ '★'.repeat(Math.floor(product.rating)) }}{{ '☆'.repeat(5 - Math.floor(product.rating)) }}</span>
-              <span class="ml-2 text-gray-400 text-xs">{{ product.rating }} ({{ product.reviewCount || 0 }} reviews)</span>
+
+          <p class="text-sm text-gray-500 leading-relaxed font-light">{{ product.description }}</p>
+
+          <!-- Product Details -->
+          <div class="space-y-4 border-t border-gray-200 pt-8">
+            <div class="flex justify-between text-[10px] tracking-widest uppercase">
+              <span class="text-gray-500">Zodiac Sign</span>
+              <span class="font-bold text-black">{{ product.zodiac }}</span>
+            </div>
+            <div class="flex justify-between text-[10px] tracking-widest uppercase">
+              <span class="text-gray-500">Rating</span>
+              <span class="font-bold text-black">{{ product.rating }} / 5.0</span>
+            </div>
+            <div v-if="product.benefits" class="flex justify-between text-[10px] tracking-widest uppercase">
+              <span class="text-gray-500">Features</span>
+              <span class="font-bold text-black">{{ product.benefits.length }} Benefits</span>
             </div>
           </div>
 
-          <p class="text-gray-400 leading-relaxed mb-6">{{ product.description }}</p>
-
           <!-- Size Selector -->
-          <div v-if="product.variants?.sizes" class="mb-6">
-            <label class="block text-sm font-medium text-white mb-3">Select Size</label>
+          <div v-if="product.variants?.sizes" class="space-y-4">
+            <label class="block text-[10px] font-bold tracking-widest uppercase">Select Size</label>
             <div class="grid grid-cols-4 gap-2">
               <button 
                 v-for="size in product.variants.sizes" 
@@ -63,41 +71,32 @@
                 @click="selectedSize = size.value"
                 :disabled="!size.inStock"
                 :class="[
-                  'py-3 px-4 rounded-lg border text-sm font-medium transition-all',
+                  'py-3 px-4 border text-[10px] font-medium transition-all uppercase tracking-wider',
                   selectedSize === size.value 
-                    ? 'bg-astro-purple border-astro-purple text-white' 
+                    ? 'bg-black border-black text-white' 
                     : size.inStock 
-                      ? 'bg-transparent border-white/20 text-gray-300 hover:border-white/40' 
-                      : 'bg-transparent border-white/10 text-gray-600 cursor-not-allowed line-through'
+                      ? 'bg-white border-gray-200 text-gray-900 hover:border-black' 
+                      : 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed line-through'
                 ]"
               >
                 {{ size.value }}
               </button>
             </div>
-            <p v-if="!selectedSize" class="text-xs text-gray-500 mt-2">Please select a size</p>
           </div>
 
-          <ul v-if="product.benefits" class="space-y-2 mb-8">
-            <li v-for="(b, i) in product.benefits" :key="i" class="flex items-start gap-2 text-gray-300 text-sm">
-              <span class="text-astro-teal">✦</span> {{ b }}
-            </li>
-          </ul>
+          <!-- Add to Cart Button -->
+          <button 
+            @click="handleAddToCart"
+            :disabled="product.variants?.sizes && !selectedSize"
+            class="w-full bg-black text-white py-5 text-[10px] tracking-[0.4em] uppercase hover:bg-zinc-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Add to Bag
+          </button>
 
-          <div class="flex gap-4 mb-8">
-            <button 
-              @click="handleAddToCart"
-              :disabled="product.variants?.sizes && !selectedSize"
-              class="flex-1 inline-flex items-center justify-center bg-astro-purple text-white px-8 py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-violet-600 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              🛒 Add to Cart
-            </button>
-            <button 
-              @click="handleBuyNow"
-              :disabled="product.variants?.sizes && !selectedSize"
-              class="flex-1 inline-flex items-center justify-center bg-astro-teal text-astro-bg px-8 py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-teal-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Buy Now →
-            </button>
+          <!-- Wishlist Button -->
+          <div class="flex justify-center">
+            <WishlistButton :product="product" />
+          </div>
           </div>
 
           <!-- Accordion Sections -->
