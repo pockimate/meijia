@@ -2,35 +2,35 @@
   <div class="relative" ref="dropdownRef">
     <button
       @click="isOpen = !isOpen"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
     >
-      <span class="text-sm text-white font-mono">{{ localeStore.currencySymbol }}</span>
-      <span class="text-sm text-gray-400 hidden sm:inline">{{ localeStore.currentCurrency }}</span>
-      <span class="text-gray-400">{{ isOpen ? '▲' : '▼' }}</span>
+      <span class="text-sm text-gray-900 font-mono font-bold">{{ localeStore.currencySymbol }}</span>
+      <span class="text-sm text-gray-600 hidden sm:inline">{{ localeStore.currentCurrency }}</span>
+      <span class="text-gray-600">{{ isOpen ? '▲' : '▼' }}</span>
     </button>
 
     <Transition name="dropdown">
       <div
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-56 bg-astro-card border border-white/20 rounded-xl shadow-2xl overflow-hidden z-50"
+        class="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-50"
       >
         <button
           v-for="currency in localeStore.currencies"
           :key="currency.code"
           @click="selectCurrency(currency.code)"
           :class="[
-            'w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors',
-            localeStore.currentCurrency === currency.code ? 'bg-astro-purple/20' : ''
+            'w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors',
+            localeStore.currentCurrency === currency.code ? 'bg-astro-purple/10' : ''
           ]"
         >
           <div class="flex items-center gap-3">
-            <span class="text-lg font-mono">{{ currency.symbol }}</span>
+            <span class="text-lg font-mono font-bold">{{ currency.symbol }}</span>
             <div class="text-left">
-              <p class="text-white text-sm">{{ currency.code }}</p>
+              <p class="text-gray-900 text-sm font-medium">{{ currency.code }}</p>
               <p class="text-gray-500 text-xs">{{ currency.name }}</p>
             </div>
           </div>
-          <span v-if="localeStore.currentCurrency === currency.code" class="text-astro-teal">✓</span>
+          <span v-if="localeStore.currentCurrency === currency.code" class="text-astro-purple">✓</span>
         </button>
       </div>
     </Transition>

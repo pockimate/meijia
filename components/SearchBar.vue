@@ -7,11 +7,11 @@
       @focus="showSuggestions = true"
       type="text" 
       placeholder="Search products..."
-      class="w-full bg-astro-card border border-white/10 rounded-lg px-4 py-2 pr-10 text-white text-sm focus:outline-none focus:border-astro-purple transition-colors"
+      class="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 pr-10 text-gray-900 text-sm focus:outline-none focus:border-astro-purple focus:ring-2 focus:ring-astro-purple/20 transition-all placeholder-gray-400"
     />
     <button 
       @click="handleSearch"
-      class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+      class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-astro-purple transition-colors"
     >
       🔍
     </button>
@@ -19,32 +19,32 @@
     <!-- Quick Suggestions Dropdown -->
     <div 
       v-if="showSuggestions && (suggestions.length > 0 || recentSearches.length > 0)"
-      class="absolute top-full left-0 right-0 mt-2 bg-astro-card border border-white/10 rounded-lg overflow-hidden z-50 shadow-2xl"
+      class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg overflow-hidden z-50 shadow-xl"
     >
       <!-- Suggestions -->
       <div v-if="suggestions.length > 0">
-        <div class="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider">Suggestions</div>
+        <div class="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider font-semibold">Suggestions</div>
         <button 
           v-for="suggestion in suggestions" 
           :key="suggestion"
           @click="selectSuggestion(suggestion)"
-          class="w-full text-left px-4 py-2 text-white hover:bg-white/5 transition-colors flex items-center gap-2"
+          class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-50 transition-colors flex items-center gap-2"
         >
-          <span class="text-gray-500">🔍</span>
+          <span class="text-gray-400">🔍</span>
           <span>{{ suggestion }}</span>
         </button>
       </div>
 
       <!-- Recent Searches -->
       <div v-if="recentSearches.length > 0 && !query">
-        <div class="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider border-t border-white/5">Recent</div>
+        <div class="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider border-t border-gray-200 font-semibold">Recent</div>
         <button 
           v-for="term in recentSearches.slice(0, 3)" 
           :key="term"
           @click="selectSuggestion(term)"
-          class="w-full text-left px-4 py-2 text-gray-400 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
+          class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors flex items-center gap-2"
         >
-          <span class="text-gray-600">🕐</span>
+          <span class="text-gray-400">🕐</span>
           <span>{{ term }}</span>
         </button>
       </div>

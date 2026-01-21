@@ -2,33 +2,33 @@
   <div class="relative" ref="dropdownRef">
     <button
       @click="isOpen = !isOpen"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
     >
       <span class="text-xl">{{ currentFlag }}</span>
-      <span class="text-sm text-gray-400 hidden sm:inline">{{ currentLanguage }}</span>
-      <span class="text-gray-400">{{ isOpen ? '▲' : '▼' }}</span>
+      <span class="text-sm text-gray-600 hidden sm:inline">{{ currentLanguage }}</span>
+      <span class="text-gray-600">{{ isOpen ? '▲' : '▼' }}</span>
     </button>
 
     <Transition name="dropdown">
       <div
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-48 bg-astro-card border border-white/20 rounded-xl shadow-2xl overflow-hidden z-50"
+        class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-50"
       >
         <button
           v-for="lang in languages"
           :key="lang.code"
           @click="selectLanguage(lang.code)"
           :class="[
-            'w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors',
-            locale === lang.code ? 'bg-astro-purple/20' : ''
+            'w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors',
+            locale === lang.code ? 'bg-astro-purple/10' : ''
           ]"
         >
           <span class="text-xl">{{ lang.flag }}</span>
           <div class="flex-1 text-left">
-            <p class="text-white text-sm">{{ lang.name }}</p>
+            <p class="text-gray-900 text-sm font-medium">{{ lang.name }}</p>
             <p class="text-gray-500 text-xs">{{ lang.nativeName }}</p>
           </div>
-          <span v-if="locale === lang.code" class="text-astro-teal">✓</span>
+          <span v-if="locale === lang.code" class="text-astro-purple">✓</span>
         </button>
       </div>
     </Transition>

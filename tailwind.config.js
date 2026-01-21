@@ -14,11 +14,11 @@ export default {
         sans: ['"Inter"', 'sans-serif'],
       },
       colors: {
-        'astro-bg': '#0B0B15',
-        'astro-card': '#151520',
-        'astro-purple': '#8B5CF6',
-        'astro-teal': '#2DD4BF',
-        'astro-pink': '#F472B6',
+        'astro-bg': '#FFFFFF',        // 纯白背景
+        'astro-card': '#F9FAFB',      // 浅灰卡片
+        'astro-purple': '#E91E63',    // 玫瑰粉（主色）
+        'astro-teal': '#F06292',      // 亮粉色（辅助）
+        'astro-pink': '#FCE4EC',      // 浅粉色（点缀）
       },
       animation: {
         marquee: 'marquee 25s linear infinite',

@@ -1,7 +1,7 @@
 <template>
-  <div class="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-astro-purple/50 transition-all duration-300 hover:shadow-xl hover:shadow-astro-purple/20">
+  <div class="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-astro-purple transition-all duration-300 hover:shadow-xl hover:shadow-astro-purple/20">
     <!-- Image -->
-    <div class="relative aspect-square overflow-hidden bg-white/5">
+    <div class="relative aspect-square overflow-hidden bg-gray-50">
       <NuxtLink :to="`/product/${product.id}`">
         <img
           :src="product.image"
@@ -16,7 +16,7 @@
       <!-- Quick View Button (appears on hover) -->
       <button
         @click="handleQuickView"
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent py-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:from-astro-purple/80"
+        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-astro-purple to-transparent py-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
         {{ $t('common.quickView') }} 👁️
       </button>
@@ -37,23 +37,23 @@
     <!-- Content -->
     <div class="p-5">
       <!-- Category -->
-      <p class="text-xs uppercase tracking-widest text-astro-teal mb-2">{{ product.category }}</p>
+      <p class="text-xs uppercase tracking-widest text-astro-purple mb-2 font-semibold">{{ product.category }}</p>
       
       <!-- Name -->
       <NuxtLink :to="`/product/${product.id}`">
-        <h3 class="text-lg font-serif font-bold text-white mb-2 group-hover:text-astro-teal transition-colors line-clamp-2">
+        <h3 class="text-lg font-serif font-bold text-gray-900 mb-2 group-hover:text-astro-purple transition-colors line-clamp-2">
           {{ product.name }}
         </h3>
       </NuxtLink>
       
       <!-- Zodiac -->
-      <p class="text-sm text-gray-400 mb-3">{{ product.zodiac }}</p>
+      <p class="text-sm text-gray-500 mb-3">{{ product.zodiac }}</p>
       
       <!-- Rating & Price -->
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-1">
-          <span class="text-yellow-400">⭐</span>
-          <span class="text-sm text-gray-300">{{ product.rating }}</span>
+          <span class="text-yellow-500">⭐</span>
+          <span class="text-sm text-gray-700 font-medium">{{ product.rating }}</span>
         </div>
         <span class="text-xl font-bold text-astro-purple">{{ formatPrice(product.price) }}</span>
       </div>
