@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen bg-astro-bg py-12">
+  <div class="min-h-screen bg-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="mb-12 text-center">
-        <h1 class="text-4xl font-serif font-bold text-white mb-4">Your Cosmic Recommendations</h1>
-        <p class="text-gray-400 text-lg">Discover products aligned with your unique energy</p>
+        <h1 class="text-4xl font-light tracking-widest uppercase text-gray-900 mb-4">Your Cosmic Recommendations</h1>
+        <p class="text-gray-600 text-lg">Discover products aligned with your unique energy</p>
       </div>
 
       <!-- Personalized Recommendations -->
@@ -40,11 +40,11 @@
         <!-- Recently Viewed -->
         <div v-if="recentlyViewed.length > 0" class="space-y-6">
           <div>
-            <h2 class="text-2xl font-serif font-bold text-white flex items-center gap-2 mb-2">
+            <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 flex items-center gap-2 mb-2">
               <span>👁️</span>
               <span>Recently Viewed</span>
             </h2>
-            <p class="text-gray-400 text-sm">Continue your cosmic exploration</p>
+            <p class="text-gray-600 text-sm">Continue your cosmic exploration</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -57,7 +57,7 @@
 
           <button
             @click="handleClearHistory"
-            class="text-sm text-gray-400 hover:text-red-400 transition-colors"
+            class="text-sm text-gray-600 hover:text-red-600 transition-colors"
           >
             Clear History
           </button>
@@ -65,14 +65,14 @@
 
         <!-- Empty State -->
         <div v-if="!hasAnyRecommendations" class="text-center py-20">
-          <div class="w-32 h-32 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6">
+          <div class="w-32 h-32 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
             <span class="text-6xl">🔮</span>
           </div>
-          <h2 class="text-2xl font-serif font-bold text-white mb-4">Start Your Cosmic Journey</h2>
-          <p class="text-gray-400 mb-8">Browse products to get personalized recommendations</p>
+          <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-4">Start Your Cosmic Journey</h2>
+          <p class="text-gray-600 mb-8">Browse products to get personalized recommendations</p>
           <NuxtLink
             to="/shop"
-            class="inline-flex items-center gap-2 bg-gradient-to-r from-astro-purple to-astro-teal text-white px-8 py-3 rounded-xl font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all"
+            class="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
           >
             Explore Shop →
           </NuxtLink>

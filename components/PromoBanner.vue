@@ -1,11 +1,11 @@
 <template>
   <div v-if="activePromo" class="relative overflow-hidden">
-    <div class="bg-gradient-to-r from-astro-purple via-astro-pink to-astro-teal py-3">
+    <div class="bg-black py-3">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-center gap-4 text-white">
           <span class="text-xl animate-pulse">{{ activePromo.badge?.split(' ')[0] || '🎉' }}</span>
-          <p class="text-sm sm:text-base font-medium text-center">
-            <span class="font-bold">{{ activePromo.name }}:</span>
+          <p class="text-sm sm:text-base font-light text-center">
+            <span class="font-medium tracking-widest uppercase">{{ activePromo.name }}:</span>
             {{ activePromo.description }}
           </p>
           <span v-if="timeLeft" class="text-xs sm:text-sm bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">

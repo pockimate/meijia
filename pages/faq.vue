@@ -1,24 +1,24 @@
 <template>
-  <div class="bg-astro-bg min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white min-h-screen py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
       <div class="text-center mb-12">
         <div class="text-4xl mb-4">❓</div>
-        <h1 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Mission Control / FAQ</h1>
-        <p class="text-gray-400">Answers to common questions about your cosmic cargo.</p>
+        <h1 class="text-3xl md:text-4xl font-light tracking-widest uppercase text-gray-900 mb-4">Mission Control / FAQ</h1>
+        <p class="text-gray-600">Answers to common questions about your cosmic cargo.</p>
       </div>
 
       <div class="space-y-8">
-        <div v-for="(section, idx) in faqs" :key="idx" class="bg-astro-card border border-white/5 rounded-2xl overflow-hidden">
-          <div class="px-6 py-4 bg-white/5 border-b border-white/5">
-            <h2 class="text-lg font-serif font-semibold text-white">{{ section.category }}</h2>
+        <div v-for="(section, idx) in faqs" :key="idx" class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+          <div class="px-6 py-4 bg-gray-100 border-b border-gray-200">
+            <h2 class="text-lg font-light tracking-widest uppercase text-gray-900">{{ section.category }}</h2>
           </div>
-          <div class="divide-y divide-white/5">
-            <details v-for="(item, qIdx) in section.questions" :key="qIdx" class="group bg-astro-bg">
+          <div class="divide-y divide-gray-200">
+            <details v-for="(item, qIdx) in section.questions" :key="qIdx" class="group bg-white">
               <summary class="px-6 py-4 cursor-pointer flex justify-between items-center text-left focus:outline-none">
-                <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{{ item.q }}</span>
+                <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">{{ item.q }}</span>
                 <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
               </summary>
-              <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
                 {{ item.a }}
               </div>
             </details>

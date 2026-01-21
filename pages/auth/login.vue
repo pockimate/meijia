@@ -1,64 +1,64 @@
 <template>
-  <div class="bg-astro-bg min-h-screen flex items-center justify-center py-12 px-4">
+  <div class="bg-white min-h-screen flex items-center justify-center py-12 px-4">
     <div class="max-w-md w-full">
       
       <!-- Logo -->
       <div class="text-center mb-8">
-        <NuxtLink to="/" class="inline-flex items-center gap-2 text-3xl font-serif font-bold text-white">
-          <span class="w-10 h-10 rounded-full bg-gradient-to-tr from-astro-purple to-astro-teal flex items-center justify-center">✨</span>
+        <NuxtLink to="/" class="inline-flex items-center gap-2 text-3xl font-light tracking-widest uppercase text-gray-900">
+          <span class="w-10 h-10 rounded-full bg-black flex items-center justify-center">✨</span>
           ASTRO
         </NuxtLink>
-        <p class="mt-2 text-gray-400">Welcome back to the cosmos</p>
+        <p class="mt-2 text-gray-600">Welcome back to the cosmos</p>
       </div>
 
       <!-- Login Form -->
-      <div class="bg-astro-card border border-white/10 rounded-2xl p-8">
-        <h2 class="text-2xl font-serif font-bold text-white mb-6">Sign In</h2>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-8">
+        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 mb-6">Sign In</h2>
         
         <form @submit.prevent="handleLogin" class="space-y-6">
           <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Email</label>
             <input 
               v-model="form.email" 
               type="email" 
               required
-              class="w-full bg-astro-bg border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-astro-purple transition-colors"
+              class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
               placeholder="cosmic@example.com"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+            <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-2">Password</label>
             <input 
               v-model="form.password" 
               type="password" 
               required
-              class="w-full bg-astro-bg border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-astro-purple transition-colors"
+              class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-black transition-colors"
               placeholder="••••••••"
             />
           </div>
 
           <div class="flex items-center justify-between">
             <label class="flex items-center">
-              <input type="checkbox" class="rounded border-white/20 bg-astro-bg text-astro-purple focus:ring-astro-purple" />
-              <span class="ml-2 text-sm text-gray-400">Remember me</span>
+              <input type="checkbox" class="rounded border-gray-300 bg-white text-black focus:ring-black" />
+              <span class="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <a href="#" class="text-sm text-astro-teal hover:text-white transition-colors">Forgot password?</a>
+            <a href="#" class="text-sm text-gray-900 hover:opacity-50 transition-opacity">Forgot password?</a>
           </div>
 
           <button 
             type="submit"
             :disabled="isLoading"
-            class="w-full bg-astro-purple text-white px-6 py-3 rounded-lg font-bold uppercase tracking-wider hover:bg-violet-700 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full bg-black text-white px-6 py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {{ isLoading ? 'Signing In...' : 'Sign In' }}
           </button>
         </form>
 
         <div class="mt-6 text-center">
-          <p class="text-gray-400 text-sm">
+          <p class="text-gray-600 text-sm">
             Don't have an account? 
-            <NuxtLink to="/auth/register" class="text-astro-teal hover:text-white transition-colors font-medium">Sign Up</NuxtLink>
+            <NuxtLink to="/auth/register" class="text-gray-900 hover:opacity-50 transition-opacity font-medium">Sign Up</NuxtLink>
           </p>
         </div>
 
@@ -66,19 +66,19 @@
         <div class="mt-8">
           <div class="relative">
             <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-white/10"></div>
+              <div class="w-full border-t border-gray-200"></div>
             </div>
             <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-astro-card text-gray-500">Or continue with</span>
+              <span class="px-2 bg-gray-50 text-gray-500">Or continue with</span>
             </div>
           </div>
 
           <div class="mt-6 grid grid-cols-2 gap-3">
-            <button class="flex items-center justify-center gap-2 bg-astro-bg border border-white/10 rounded-lg px-4 py-3 text-white hover:bg-white/5 transition-colors">
+            <button class="flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 hover:bg-gray-100 transition-colors">
               <span>🌐</span>
               <span class="text-sm font-medium">Google</span>
             </button>
-            <button class="flex items-center justify-center gap-2 bg-astro-bg border border-white/10 rounded-lg px-4 py-3 text-white hover:bg-white/5 transition-colors">
+            <button class="flex items-center justify-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 hover:bg-gray-100 transition-colors">
               <span>👤</span>
               <span class="text-sm font-medium">GitHub</span>
             </button>

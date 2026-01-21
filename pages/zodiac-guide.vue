@@ -1,41 +1,41 @@
 <template>
-  <div class="bg-astro-bg min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white min-h-screen py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Cosmic Alignment Chart</h1>
-        <p class="text-gray-400 max-w-2xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-light tracking-widest uppercase text-gray-900 mb-4">Cosmic Alignment Chart</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">
           Discover the nail aesthetics written in your star chart. 
           Find your sign below to reveal your power color and style recommendation.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="sign in signs" :key="sign.name" class="group relative bg-astro-card rounded-2xl border border-white/5 overflow-hidden hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+        <div v-for="sign in signs" :key="sign.name" class="group relative bg-gray-50 rounded-lg border border-gray-200 overflow-hidden hover:border-black transition-all duration-300 hover:-translate-y-1">
           <div :class="`h-2 w-full bg-gradient-to-r ${sign.color}`"></div>
           
           <div class="p-6">
             <div class="flex justify-between items-start mb-4">
               <div>
-                <h3 class="text-2xl font-serif font-bold text-white">{{ sign.name }}</h3>
-                <p class="text-xs text-gray-500 font-mono mt-1">{{ sign.dates }}</p>
+                <h3 class="text-2xl font-light tracking-widest uppercase text-gray-900">{{ sign.name }}</h3>
+                <p class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500 mt-1">{{ sign.dates }}</p>
               </div>
-              <div class="flex items-center gap-1 bg-white/5 px-2 py-1 rounded text-xs font-medium text-gray-300">
+              <div class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded text-[10px] tracking-[0.2em] uppercase font-light text-gray-700">
                 {{ sign.icon }} {{ sign.element }}
               </div>
             </div>
 
             <div class="space-y-4 mb-6">
               <div>
-                <span class="text-xs uppercase tracking-widest text-gray-500">Vibe</span>
-                <p class="text-gray-200">{{ sign.vibe }}</p>
+                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Vibe</span>
+                <p class="text-gray-700">{{ sign.vibe }}</p>
               </div>
               <div>
-                <span class="text-xs uppercase tracking-widest text-gray-500">Recommendation</span>
-                <p class="text-astro-teal">{{ sign.recommendation }}</p>
+                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-500">Recommendation</span>
+                <p class="text-gray-900">{{ sign.recommendation }}</p>
               </div>
             </div>
 
-            <NuxtLink to="/shop" class="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors group-hover:underline decoration-astro-purple underline-offset-4">
+            <NuxtLink to="/shop" class="inline-flex items-center text-sm text-gray-600 hover:opacity-50 transition-opacity group-hover:underline decoration-black underline-offset-4">
               Shop the Vibe →
             </NuxtLink>
           </div>

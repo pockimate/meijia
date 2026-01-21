@@ -4,8 +4,8 @@
     :class="[
       'flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
       compareStore.isInCompare(product.id)
-        ? 'bg-astro-teal/20 border border-astro-teal text-astro-teal'
-        : 'bg-white/5 border border-white/20 text-gray-400 hover:border-astro-teal hover:text-astro-teal'
+        ? 'bg-gray-100 border border-gray-900 text-gray-900'
+        : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-gray-900 hover:text-gray-900'
     ]"
     :disabled="!compareStore.canAddMore && !compareStore.isInCompare(product.id)"
     :title="compareStore.isInCompare(product.id) ? 'Remove from comparison' : 'Add to comparison'"

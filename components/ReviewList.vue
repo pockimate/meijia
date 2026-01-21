@@ -1,13 +1,13 @@
 <template>
   <div class="space-y-6">
     <!-- Controls -->
-    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white/5 rounded-xl p-4 border border-white/10">
+    <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-gray-50 rounded-lg p-4 border border-gray-200">
       <!-- Sort -->
       <div class="flex items-center gap-3 flex-wrap">
-        <label class="text-sm text-gray-400">Sort by:</label>
+        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-600">Sort by:</label>
         <select
           v-model="reviewsStore.sortBy"
-          class="bg-astro-card border border-white/20 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-astro-purple transition-colors"
+          class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
         >
           <option value="newest">Newest First</option>
           <option value="oldest">Oldest First</option>
@@ -19,10 +19,10 @@
 
       <!-- Filter -->
       <div class="flex items-center gap-3 flex-wrap">
-        <label class="text-sm text-gray-400">Filter:</label>
+        <label class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-600">Filter:</label>
         <select
           v-model="reviewsStore.filterBy"
-          class="bg-astro-card border border-white/20 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-astro-purple transition-colors"
+          class="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
         >
           <option value="all">All Reviews</option>
           <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
@@ -37,9 +37,9 @@
     </div>
 
     <!-- Reviews Count -->
-    <div class="text-gray-400 text-sm">
-      Showing <span class="text-white font-medium">{{ processedReviews.length }}</span> of 
-      <span class="text-white font-medium">{{ reviews.length }}</span> reviews
+    <div class="text-gray-600 text-sm">
+      Showing <span class="text-gray-900 font-medium">{{ processedReviews.length }}</span> of 
+      <span class="text-gray-900 font-medium">{{ reviews.length }}</span> reviews
     </div>
 
     <!-- Reviews List -->
@@ -47,21 +47,21 @@
       <div
         v-for="review in processedReviews"
         :key="review.id"
-        class="bg-white/5 rounded-xl p-6 border border-white/10 hover:border-white/20 transition-colors"
+        class="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-gray-300 transition-colors"
       >
         <!-- Header -->
         <div class="flex items-start justify-between mb-4">
           <div class="flex items-start gap-4">
             <!-- Avatar -->
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-astro-purple to-astro-teal flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+            <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
               {{ review.user.charAt(0).toUpperCase() }}
             </div>
 
             <div>
               <!-- User & Verified -->
               <div class="flex items-center gap-2 mb-1">
-                <h4 class="font-medium text-white">{{ review.user }}</h4>
-                <span v-if="review.verified" class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
+                <h4 class="font-medium text-gray-900">{{ review.user }}</h4>
+                <span v-if="review.verified" class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full border border-green-200">
                   ✓ Verified
                 </span>
               </div>
@@ -69,7 +69,7 @@
               <!-- Rating & Date -->
               <div class="flex items-center gap-3 text-sm">
                 <div class="flex items-center">
-                  <span v-for="i in 5" :key="i" :class="i <= review.rating ? 'text-yellow-400' : 'text-gray-600'">
+                  <span v-for="i in 5" :key="i" :class="i <= review.rating ? 'text-yellow-400' : 'text-gray-300'">
                     ⭐
                   </span>
                 </div>
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Review Text -->
-        <p class="text-gray-300 leading-relaxed mb-4">{{ review.text }}</p>
+        <p class="text-gray-700 leading-relaxed mb-4">{{ review.text }}</p>
 
         <!-- Images -->
         <div v-if="review.images && review.images.length > 0" class="mb-4">
@@ -90,7 +90,7 @@
               v-for="(img, idx) in review.images"
               :key="idx"
               @click="openImageModal(review.images, idx)"
-              class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border border-white/20 hover:border-astro-purple transition-colors"
+              class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border border-gray-200 hover:border-black transition-colors"
             >
               <img :src="img" :alt="`Review image ${idx + 1}`" class="w-full h-full object-cover" />
             </button>
@@ -98,26 +98,26 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center gap-4 pt-4 border-t border-white/5">
+        <div class="flex items-center gap-4 pt-4 border-t border-gray-200">
           <button
             @click="handleLike(review.id)"
             :class="[
               'flex items-center gap-2 text-sm transition-colors',
               reviewsStore.isLiked(review.id)
-                ? 'text-astro-pink'
-                : 'text-gray-400 hover:text-astro-pink'
+                ? 'text-gray-900'
+                : 'text-gray-600 hover:text-gray-900'
             ]"
           >
             <span class="text-lg">{{ reviewsStore.isLiked(review.id) ? '❤️' : '🤍' }}</span>
             <span>Helpful ({{ (review.helpful || 0) + (reviewsStore.isLiked(review.id) ? 1 : 0) }})</span>
           </button>
 
-          <button class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+          <button class="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors">
             <span>💬</span>
             <span>Reply</span>
           </button>
 
-          <button class="flex items-center gap-2 text-sm text-gray-400 hover:text-red-400 transition-colors ml-auto">
+          <button class="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition-colors ml-auto">
             <span>🚩</span>
             <span>Report</span>
           </button>
@@ -127,13 +127,13 @@
 
     <!-- Empty State -->
     <div v-else class="text-center py-12">
-      <div class="w-20 h-20 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-4">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
         <span class="text-4xl">💬</span>
       </div>
-      <p class="text-gray-400">No reviews match your filters</p>
+      <p class="text-gray-600">No reviews match your filters</p>
       <button
         @click="reviewsStore.reset()"
-        class="mt-4 text-astro-teal hover:text-white transition-colors text-sm"
+        class="mt-4 text-gray-900 hover:opacity-50 transition-opacity text-sm"
       >
         Reset Filters
       </button>

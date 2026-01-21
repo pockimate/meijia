@@ -10,11 +10,11 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
         <!-- Modal -->
-        <div class="relative bg-astro-bg border border-white/20 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div class="relative bg-white border border-gray-200 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
           <!-- Close Button -->
           <button
             @click="quickViewStore.closeQuickView()"
-            class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+            class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black hover:bg-zinc-800 text-white transition-colors"
           >
             <span class="text-2xl">✕</span>
           </button>
@@ -23,7 +23,7 @@
             <!-- Left: Image Gallery -->
             <div class="space-y-4">
               <!-- Main Image -->
-              <div class="aspect-square rounded-xl overflow-hidden bg-white/5 border border-white/10">
+              <div class="aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
                 <img
                   :src="currentImage"
                   :alt="product.name"
@@ -40,8 +40,8 @@
                   :class="[
                     'flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all',
                     currentImageIndex === idx
-                      ? 'border-astro-purple shadow-lg shadow-astro-purple/50'
-                      : 'border-white/10 hover:border-white/30'
+                      ? 'border-black shadow-lg'
+                      : 'border-gray-200 hover:border-gray-400'
                   ]"
                 >
                   <img :src="img" :alt="`${product.name} ${idx + 1}`" class="w-full h-full object-cover" />
@@ -53,31 +53,31 @@
             <div class="flex flex-col">
               <!-- Category & Rating -->
               <div class="flex items-center justify-between mb-3">
-                <span class="text-xs uppercase tracking-widest text-astro-teal">{{ product.category }}</span>
+                <span class="text-[10px] tracking-[0.2em] uppercase font-light text-gray-900">{{ product.category }}</span>
                 <div class="flex items-center gap-1">
                   <span class="text-yellow-400">⭐</span>
-                  <span class="text-sm text-gray-300">{{ product.rating }}</span>
+                  <span class="text-sm text-gray-700">{{ product.rating }}</span>
                   <span class="text-sm text-gray-500">({{ product.reviews?.length || 0 }})</span>
                 </div>
               </div>
 
               <!-- Name -->
-              <h2 class="text-3xl font-serif font-bold text-white mb-2">{{ product.name }}</h2>
+              <h2 class="text-3xl font-light tracking-widest uppercase text-gray-900 mb-2">{{ product.name }}</h2>
 
               <!-- Zodiac -->
-              <p class="text-sm text-gray-400 mb-4">{{ product.zodiac }}</p>
+              <p class="text-sm text-gray-600 mb-4">{{ product.zodiac }}</p>
 
               <!-- Price -->
               <div class="mb-6">
-                <span class="text-3xl font-bold text-astro-purple">${{ product.price }}</span>
+                <span class="text-3xl font-light text-gray-900">${{ product.price }}</span>
               </div>
 
               <!-- Description -->
-              <p class="text-gray-300 mb-6 leading-relaxed">{{ product.description }}</p>
+              <p class="text-gray-700 mb-6 leading-relaxed">{{ product.description }}</p>
 
               <!-- Size Selection -->
               <div v-if="product.variants && product.variants.length > 0" class="mb-6">
-                <label class="block text-sm font-medium text-gray-300 mb-3">Select Size</label>
+                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Select Size</label>
                 <div class="flex gap-2">
                   <button
                     v-for="variant in product.variants"
@@ -86,8 +86,8 @@
                     :class="[
                       'px-4 py-2 rounded-lg border transition-all',
                       selectedSize === variant.size
-                        ? 'border-astro-purple bg-astro-purple/20 text-white'
-                        : 'border-white/20 text-gray-400 hover:border-white/40'
+                        ? 'border-black bg-black text-white'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-400'
                     ]"
                   >
                     {{ variant.size }}
@@ -97,18 +97,18 @@
 
               <!-- Quantity -->
               <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-300 mb-3">Quantity</label>
+                <label class="block text-[10px] tracking-[0.2em] uppercase font-light text-gray-600 mb-3">Quantity</label>
                 <div class="flex items-center gap-3">
                   <button
                     @click="quantity = Math.max(1, quantity - 1)"
-                    class="w-10 h-10 rounded-lg border border-white/20 hover:border-white/40 text-white transition-colors"
+                    class="w-10 h-10 rounded-lg border border-gray-200 hover:border-gray-400 text-gray-900 transition-colors"
                   >
                     −
                   </button>
-                  <span class="text-xl font-medium text-white w-12 text-center">{{ quantity }}</span>
+                  <span class="text-xl font-medium text-gray-900 w-12 text-center">{{ quantity }}</span>
                   <button
                     @click="quantity++"
-                    class="w-10 h-10 rounded-lg border border-white/20 hover:border-white/40 text-white transition-colors"
+                    class="w-10 h-10 rounded-lg border border-gray-200 hover:border-gray-400 text-gray-900 transition-colors"
                   >
                     +
                   </button>
@@ -119,17 +119,17 @@
               <div class="flex gap-3 mt-auto">
                 <button
                   @click="handleAddToCart"
-                  class="flex-1 bg-gradient-to-r from-astro-purple to-astro-teal text-white py-4 rounded-xl font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all"
+                  class="flex-1 bg-black text-white py-4 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
                 >
                   Add to Cart 🛒
                 </button>
                 <button
                   @click="handleToggleWishlist"
                   :class="[
-                    'w-14 h-14 rounded-xl border transition-all',
+                    'w-14 h-14 rounded-lg border transition-all',
                     wishlistStore.isInWishlist(product.id)
-                      ? 'border-astro-pink bg-astro-pink/20 text-2xl'
-                      : 'border-white/20 hover:border-astro-pink text-2xl'
+                      ? 'border-gray-900 bg-gray-100 text-2xl'
+                      : 'border-gray-200 hover:border-gray-900 text-2xl'
                   ]"
                 >
                   {{ wishlistStore.isInWishlist(product.id) ? '💖' : '🤍' }}
@@ -140,7 +140,7 @@
               <NuxtLink
                 :to="`/product/${product.id}`"
                 @click="quickViewStore.closeQuickView()"
-                class="mt-4 text-center text-sm text-astro-teal hover:text-white transition-colors"
+                class="mt-4 text-center text-sm text-gray-900 hover:opacity-50 transition-opacity"
               >
                 View Full Details →
               </NuxtLink>

@@ -2,13 +2,13 @@
   <Transition name="slide-up">
     <div
       v-if="compareStore.compareCount > 0"
-      class="fixed bottom-0 left-0 right-0 z-[100] bg-astro-card/95 backdrop-blur-lg border-t border-white/20 shadow-2xl"
+      class="fixed bottom-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-2xl"
     >
       <div class="max-w-7xl mx-auto px-4 py-4">
         <div class="flex items-center justify-between gap-4">
           <!-- Left: Products -->
           <div class="flex items-center gap-3 flex-1 overflow-x-auto">
-            <div class="flex items-center gap-2 text-white font-medium whitespace-nowrap">
+            <div class="flex items-center gap-2 text-gray-900 font-medium whitespace-nowrap">
               <span class="text-xl">📊</span>
               <span>Compare ({{ compareStore.compareCount }}/{{ compareStore.maxItems }})</span>
             </div>
@@ -19,7 +19,7 @@
                 :key="product.id"
                 class="relative group flex-shrink-0"
               >
-                <div class="w-16 h-16 rounded-lg overflow-hidden border border-white/20 bg-white/5">
+                <div class="w-16 h-16 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
                   <img
                     :src="product.image"
                     :alt="product.name"
@@ -28,7 +28,7 @@
                 </div>
                 <button
                   @click="compareStore.removeFromCompare(product.id)"
-                  class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   ✕
                 </button>
@@ -38,7 +38,7 @@
               <div
                 v-for="i in (compareStore.maxItems - compareStore.compareCount)"
                 :key="`empty-${i}`"
-                class="w-16 h-16 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center text-gray-500 text-xs flex-shrink-0"
+                class="w-16 h-16 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-500 text-xs flex-shrink-0"
               >
                 +
               </div>
@@ -49,13 +49,13 @@
           <div class="flex items-center gap-3">
             <button
               @click="compareStore.clearCompare()"
-              class="text-gray-400 hover:text-white text-sm transition-colors whitespace-nowrap"
+              class="text-gray-600 hover:text-gray-900 text-sm transition-colors whitespace-nowrap"
             >
               Clear All
             </button>
             <NuxtLink
               to="/compare"
-              class="bg-gradient-to-r from-astro-purple to-astro-teal text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all whitespace-nowrap"
+              class="bg-black text-white px-6 py-3 rounded-lg text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all whitespace-nowrap"
             >
               Compare Now →
             </NuxtLink>
