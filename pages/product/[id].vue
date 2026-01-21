@@ -97,45 +97,17 @@
           <div class="flex justify-center">
             <WishlistButton :product="product" />
           </div>
-          </div>
-
-          <!-- Accordion Sections -->
-          <div class="space-y-2">
-            <details class="bg-astro-card border border-white/10 rounded-lg overflow-hidden">
-              <summary class="px-6 py-4 cursor-pointer text-white font-medium hover:bg-white/5 transition-colors flex justify-between items-center">
-                <span>How to Use</span>
-                <span class="text-astro-teal">+</span>
-              </summary>
-              <div class="px-6 pb-4 text-gray-400 text-sm space-y-2">
-                <ol v-if="product.howToUse" class="list-decimal list-inside space-y-1">
-                  <li v-for="(step, i) in product.howToUse" :key="i">{{ step }}</li>
-                </ol>
-                <p v-else>Apply as directed on packaging.</p>
-              </div>
-            </details>
-
-            <details class="bg-astro-card border border-white/10 rounded-lg overflow-hidden">
-              <summary class="px-6 py-4 cursor-pointer text-white font-medium hover:bg-white/5 transition-colors flex justify-between items-center">
-                <span>Ingredients</span>
-                <span class="text-astro-teal">+</span>
-              </summary>
-              <div class="px-6 pb-4 text-gray-400 text-sm">
-                <p v-if="product.ingredients">{{ product.ingredients.join(', ') }}</p>
-                <p v-else>Vegan, cruelty-free, and 7-free formula.</p>
-              </div>
-            </details>
-          </div>
         </div>
       </div>
 
       <!-- Reviews Section -->
-      <div v-if="product.reviews && product.reviews.length > 0" class="mb-16">
+      <div v-if="product.reviews && product.reviews.length > 0" class="mb-16 border-t border-gray-100 pt-16">
         <div class="flex justify-between items-center mb-8">
-          <h2 class="text-2xl font-serif font-bold text-white">Cosmic Reviews</h2>
+          <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900">Customer Reviews</h2>
           <div class="flex items-center gap-2">
-            <span class="text-astro-teal text-xl">{{ '★'.repeat(Math.floor(product.rating)) }}</span>
-            <span class="text-white font-mono">{{ product.rating }}</span>
-            <span class="text-gray-500 text-sm">({{ product.reviewCount }} reviews)</span>
+            <span class="text-gray-900 text-xl">{{ '★'.repeat(Math.floor(product.rating)) }}</span>
+            <span class="text-gray-900 font-light">{{ product.rating }}</span>
+            <span class="text-gray-400 text-xs">({{ product.reviewCount }} reviews)</span>
           </div>
         </div>
 

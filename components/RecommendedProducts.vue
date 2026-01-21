@@ -3,19 +3,18 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <div>
-        <h2 class="text-2xl font-serif font-bold text-white flex items-center gap-2">
+        <h2 class="text-2xl font-light tracking-widest uppercase text-gray-900 flex items-center gap-2">
           <span>{{ icon }}</span>
           <span>{{ title }}</span>
         </h2>
-        <p v-if="subtitle" class="text-gray-400 text-sm mt-1">{{ subtitle }}</p>
+        <p v-if="subtitle" class="text-gray-500 text-xs mt-2 font-light">{{ subtitle }}</p>
       </div>
       <NuxtLink 
         v-if="showViewAll"
         to="/shop" 
-        class="text-astro-teal hover:text-white transition-colors text-sm flex items-center gap-1"
+        class="text-gray-900 hover:opacity-50 transition-opacity text-xs border-b border-black pb-1 tracking-widest uppercase"
       >
-        <span>View All</span>
-        <span>→</span>
+        View All
       </NuxtLink>
     </div>
 
