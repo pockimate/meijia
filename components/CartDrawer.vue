@@ -15,8 +15,8 @@
               
               <!-- Header -->
               <div class="px-8 py-8 border-b border-gray-100 flex items-center justify-between">
-                <h2 class="text-xs font-bold text-gray-900 flex items-center gap-2 tracking-[0.3em] uppercase">
-                  Your Cart
+                <h2 class="text-xs font-bold text-gray-900 tracking-[0.3em] uppercase">
+                  Shopping Bag ({{ cartStore.cartCount }})
                 </h2>
                 <button 
                   @click="cartStore.closeCart()"
@@ -73,15 +73,18 @@
               <!-- Footer / Checkout -->
               <div v-if="cartStore.cartItems.length > 0" class="border-t border-gray-100 px-8 py-8 space-y-4">
                 <div class="flex justify-between text-xs tracking-widest uppercase">
-                  <span class="font-light">Total</span>
+                  <span class="font-light">Subtotal</span>
                   <span class="font-bold text-gray-900">{{ formatPrice(cartStore.cartTotal) }}</span>
                 </div>
+                <p class="text-[9px] text-gray-400 uppercase tracking-tighter text-center italic">
+                  Shipping & taxes calculated at checkout
+                </p>
                 <NuxtLink 
                   to="/checkout"
                   @click="cartStore.closeCart()"
-                  class="w-full flex items-center justify-center bg-black text-white py-4 text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
+                  class="w-full flex items-center justify-center bg-black text-white py-5 text-[10px] tracking-[0.4em] uppercase hover:bg-zinc-800 transition-all"
                 >
-                  Checkout
+                  Proceed to Checkout
                 </NuxtLink>
               </div>
             </div>

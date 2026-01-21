@@ -26,10 +26,10 @@
       <!-- Quick Add Button - slides up from bottom -->
       <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-white/90 backdrop-blur-sm">
         <button
-          @click="handleAddToCart"
-          class="w-full text-[10px] text-center tracking-[0.3em] uppercase font-light hover:opacity-50 transition-opacity"
+          @click.stop="handleQuickView"
+          class="w-full text-[9px] text-center tracking-widest uppercase font-bold hover:opacity-50 transition-opacity py-3 shadow-xl"
         >
-          + Quick Add
+          Quick View
         </button>
       </div>
 
@@ -87,6 +87,6 @@ const handleQuickView = () => {
 // 添加到购物车
 const handleAddToCart = () => {
   cartStore.addToCart(props.product);
-  toastStore.success(`${props.product.name} ${t('common.addToCart')}! 🛒`);
+  toastStore.success(`${props.product.name} added to bag! 🛒`);
 };
 </script>

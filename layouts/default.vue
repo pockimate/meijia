@@ -20,26 +20,26 @@
             <NuxtLink to="/stylist" class="text-[10px] text-gray-900 hover:opacity-50 transition-opacity tracking-[0.2em] uppercase font-light">{{ $t('nav.astraAI') }}</NuxtLink>
             
             <!-- Right side actions -->
-            <div class="flex items-center space-x-6 text-[10px] tracking-[0.2em] uppercase font-light">
-              <NuxtLink to="/wishlist" class="hover:opacity-50 transition-opacity relative">
-                <span>Wishlist</span>
-                <span v-if="wishlistStore.wishlistCount > 0" class="absolute -top-2 -right-3 w-4 h-4 bg-black text-white text-[8px] rounded-full flex items-center justify-center">{{ wishlistStore.wishlistCount }}</span>
+            <div class="flex items-center space-x-6 text-[9px] tracking-[0.2em] uppercase font-light">
+              <NuxtLink to="/search" class="hover:opacity-50 transition-opacity">
+                Search
               </NuxtLink>
               
               <NuxtLink v-if="authStore.isLoggedIn" to="/account" class="hover:opacity-50 transition-opacity">
                 Account
               </NuxtLink>
               <NuxtLink v-else to="/auth/login" class="hover:opacity-50 transition-opacity">
-                {{ $t('nav.signIn') }}
+                Login
               </NuxtLink>
               
-              <div class="flex items-center gap-4 border-l border-gray-200 pl-6">
-                <LanguageSwitcher />
-                <CurrencySwitcher />
-              </div>
-              
               <button @click="cartStore.toggleCart()" class="hover:opacity-50 transition-opacity relative">
-                <span>Cart ({{ cartStore.cartCount }})</span>
+                <span>Bag</span>
+                <span 
+                  v-if="cartStore.cartCount > 0" 
+                  class="absolute -top-2 -right-3 bg-black text-white text-[7px] w-4 h-4 flex items-center justify-center rounded-full"
+                >
+                  {{ cartStore.cartCount }}
+                </span>
               </button>
             </div>
           </div>

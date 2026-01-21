@@ -9,24 +9,33 @@
       <div class="absolute inset-0 bg-black/10 z-10" />
       <img 
         src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=2511&auto=format&fit=crop" 
-        class="absolute inset-0 w-full h-full object-cover scale-105"
+        class="absolute inset-0 w-full h-full object-cover scale-105 grayscale-[20%]"
         alt="Cosmic Nail Art"
       />
       
       <!-- Hero Content -->
       <div class="relative z-20 text-center text-white px-4">
-        <h1 class="text-5xl md:text-7xl font-extralight tracking-tighter mb-6">
-          BEAUTY IN SECONDS
+        <h1 class="text-6xl md:text-8xl font-extralight tracking-tighter mb-4">
+          REDEFINE<br>
+          <span class="italic">NAIL BEAUTY</span>
         </h1>
-        <p class="text-sm tracking-[0.4em] uppercase font-light mb-10">
-          Revolutionary Magnetic Technology
+        <p class="text-[10px] tracking-[0.6em] uppercase mb-10 opacity-80">
+          3-Second Application. Glue-Free.
         </p>
-        <NuxtLink 
-          to="/shop" 
-          class="inline-block px-12 py-4 bg-white text-black text-[10px] tracking-[0.3em] uppercase hover:bg-black hover:text-white transition-all duration-500"
-        >
-          Explore Now
-        </NuxtLink>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+          <NuxtLink 
+            to="/shop" 
+            class="bg-white text-black px-12 py-4 text-[10px] tracking-[0.3em] uppercase hover:bg-black hover:text-white transition-all duration-500"
+          >
+            Shop Collection
+          </NuxtLink>
+          <NuxtLink 
+            to="/stylist" 
+            class="border border-white text-white px-12 py-4 text-[10px] tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all"
+          >
+            Try AI Stylist
+          </NuxtLink>
+        </div>
       </div>
     </div>
 
