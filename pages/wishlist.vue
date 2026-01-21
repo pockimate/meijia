@@ -1,125 +1,77 @@
 <template>
-  <div class="bg-astro-bg min-h-screen py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="bg-white min-h-screen pt-32 px-8 lg:px-12">
+    <div class="max-w-7xl mx-auto">
       
       <!-- Header -->
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-        <div>
-          <h1 class="text-3xl font-serif font-bold text-white">My Wishlist</h1>
-          <p class="text-gray-400 mt-1">Your cosmic favorites</p>
-        </div>
-        
-        <div v-if="wishlistStore.wishlistCount > 0" class="mt-4 md:mt-0 flex gap-3">
-          <button 
-            @click="moveAllToCart"
-            class="bg-astro-purple text-white px-6 py-3 rounded-lg font-medium hover:bg-violet-700 transition-all flex items-center gap-2"
-          >
-            🛒 Add All to Cart
-          </button>
-          <button 
-            @click="clearWishlist"
-            class="border border-white/20 text-gray-400 hover:text-white hover:border-white/40 px-6 py-3 rounded-lg font-medium transition-all"
-          >
-            Clear All
-          </button>
-        </div>
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-light tracking-widest uppercase text-gray-900 mb-4">Your Wishlist</h1>
+        <p class="text-gray-500 text-sm font-light">{{ wishlistStore.wishlistCount }} items saved</p>
       </div>
 
       <!-- Empty State -->
       <div v-if="wishlistStore.wishlistCount === 0" class="text-center py-20">
-        <div class="w-24 h-24 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6">
+        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-50 flex items-center justify-center">
           <span class="text-5xl">💫</span>
         </div>
-        <h2 class="text-2xl font-serif font-bold text-white mb-4">Your wishlist is empty</h2>
-        <p class="text-gray-400 mb-8">Start adding products you love!</p>
+        <h2 class="text-2xl font-light text-gray-900 mb-4">Your wishlist is empty</h2>
+        <p class="text-gray-500 mb-8 font-light">Start adding products you love</p>
         <NuxtLink 
           to="/shop"
-          class="inline-flex items-center bg-astro-purple text-white px-8 py-3 rounded-lg font-medium hover:bg-violet-700 transition-all"
+          class="inline-flex items-center bg-black text-white px-8 py-3 text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all"
         >
-          Explore Shop →
+          Explore Shop
         </NuxtLink>
       </div>
 
-      <!-- Wishlist Grid -->
+      <!-- Wishlist Items -->
       <div v-else>
-        <p class="text-gray-400 mb-6">
-          <span class="text-white font-medium">{{ wishlistStore.wishlistCount }}</span> items in your wishlist
-        </p>
+        <!-- Actions Bar -->
+        <div class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100">
+          <p class="text-xs text-gray-500 tracking-widest uppercase">{{ wishlistStore.wishlistCount }} Products</p>
+          <button 
+            @click="moveAllToCart"
+            class="bg-black text-white px-6 py-3 text-[10px] tracking-[0.3em] uppercase hover:bg-zinc-800 transition-all flex items-center gap-2"
+          >
+            Add All to Bag
+          </button>
+        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div 
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-16">
+          <div
             v-for="product in wishlistStore.wishlistItems" 
             :key="product.id"
-            class="group bg-astro-card border border-white/5 hover:border-astro-purple/50 rounded-xl overflow-hidden transition-all relative"
+            class="group relative"
           >
             <!-- Remove Button -->
-            <button 
-              @click="removeFromWishlist(product.id)"
-              class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 transition-all"
-              title="Remove from wishlist"
+            <button
+              @click="wishlistStore.removeFromWishlist(product.id)"
+              class="absolute top-3 right-3 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-black transition-colors shadow-md"
             >
               ✕
             </button>
 
+            <!-- Product Card -->
             <NuxtLink :to="`/product/${product.id}`">
-              <div class="h-64 overflow-hidden relative">
-                <img :src="product.image" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <span v-if="product.isNew" class="absolute top-2 left-2 bg-astro-teal text-astro-bg text-[10px] px-2 py-1 uppercase tracking-widest font-bold rounded-sm">New Drop</span>
+              <div class="aspect-[3/4] bg-gray-50 overflow-hidden mb-4">
+                <img :src="product.image" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
             </NuxtLink>
 
-            <div class="p-4">
+            <div class="text-center">
               <NuxtLink :to="`/product/${product.id}`">
-                <div class="flex justify-between items-start mb-2">
-                  <div class="flex-1">
-                    <h3 class="text-lg font-serif text-white group-hover:text-astro-teal transition-colors">{{ product.name }}</h3>
-                    <p class="mt-1 text-xs text-gray-400 capitalize font-mono">{{ product.category }}</p>
-                  </div>
-                  <p class="text-lg font-medium text-astro-purple ml-2">${{ product.price.toFixed(2) }}</p>
-                </div>
-                <div class="flex items-center mb-3">
-                  <span class="text-astro-teal text-xs">{{ '★'.repeat(Math.floor(product.rating)) }}{{ '☆'.repeat(5 - Math.floor(product.rating)) }}</span>
-                  <span class="ml-2 text-xs text-gray-500">{{ product.rating }}</span>
-                </div>
+                <h3 class="text-xs tracking-widest uppercase font-medium text-gray-900 hover:opacity-50 transition-opacity">{{ product.name }}</h3>
               </NuxtLink>
-
+              <p class="text-xs text-gray-500 mt-2 font-light">${{ product.price.toFixed(2) }}</p>
+              
               <button 
                 @click="addToCart(product)"
-                class="w-full bg-astro-purple hover:bg-violet-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-all hover:shadow-[0_0_15px_rgba(139,92,246,0.4)] flex items-center justify-center gap-2"
+                class="w-full mt-4 bg-black hover:bg-zinc-800 text-white py-2 px-4 text-[10px] tracking-[0.3em] uppercase transition-all"
               >
-                🛒 Add to Cart
+                Add to Bag
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Recommendations -->
-      <div v-if="wishlistStore.wishlistCount > 0" class="mt-16">
-        <h2 class="text-2xl font-serif font-bold text-white mb-6">You Might Also Like</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <NuxtLink 
-            v-for="product in recommendations" 
-            :key="product.id"
-            :to="`/product/${product.id}`"
-            class="group bg-astro-card border border-white/5 hover:border-astro-purple/50 rounded-xl overflow-hidden transition-all"
-          >
-            <div class="h-48 overflow-hidden">
-              <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            </div>
-            <div class="p-4">
-              <h3 class="text-lg font-serif text-white group-hover:text-astro-teal transition-colors">{{ product.name }}</h3>
-              <div class="flex justify-between items-center mt-2">
-                <p class="text-astro-purple">${{ product.price.toFixed(2) }}</p>
-                <button 
-                  @click.prevent="wishlistStore.addToWishlist(product)"
-                  class="text-gray-400 hover:text-astro-pink transition-colors"
-                >
-                  💫
-                </button>
-              </div>
-            </div>
-          </NuxtLink>
         </div>
       </div>
     </div>
@@ -129,41 +81,30 @@
 <script setup lang="ts">
 import { useWishlistStore } from '~/stores/wishlist';
 import { useCartStore } from '~/stores/cart';
-import { products } from '~/data/products';
+import { useToastStore } from '~/stores/toast';
+import type { Product } from '~/types';
 
 const wishlistStore = useWishlistStore();
 const cartStore = useCartStore();
-const router = useRouter();
+const toastStore = useToastStore();
 
 onMounted(() => {
   wishlistStore.initWishlist();
 });
 
-const recommendations = computed(() => {
-  // 获取不在愿望清单中的产品
-  const wishlistIds = wishlistStore.wishlistItems.map(item => item.id);
-  return products.filter(p => !wishlistIds.includes(p.id)).slice(0, 4);
-});
-
-const removeFromWishlist = (productId: number) => {
-  wishlistStore.removeFromWishlist(productId);
-};
-
-const addToCart = (product: any) => {
+const addToCart = (product: Product) => {
   cartStore.addToCart(product);
+  toastStore.success(`${product.name} added to bag!`);
 };
 
 const moveAllToCart = () => {
-  wishlistStore.moveAllToCart(cartStore);
-};
-
-const clearWishlist = () => {
-  if (confirm('Are you sure you want to clear your wishlist?')) {
-    wishlistStore.clearWishlist();
-  }
+  wishlistStore.wishlistItems.forEach(product => {
+    cartStore.addToCart(product);
+  });
+  toastStore.success('All items added to bag!');
 };
 
 useHead({
-  title: 'My Wishlist | Astro Nails'
+  title: 'Wishlist | Astro Nails'
 });
 </script>
