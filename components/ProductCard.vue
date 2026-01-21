@@ -1,73 +1,64 @@
 <template>
-  <div class="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-astro-purple transition-all duration-300 hover:shadow-xl hover:shadow-astro-purple/20">
-    <!-- Image -->
-    <div class="relative aspect-square overflow-hidden bg-gray-50">
+  <div class="group cursor-pointer">
+    <!-- Image Container -->
+    <div class="relative aspect-[3/4] overflow-hidden bg-gray-50">
       <NuxtLink :to="`/product/${product.id}`">
+        <!-- Main Image -->
         <img
           :src="product.image"
           :alt="product.name"
           loading="lazy"
           width="400"
-          height="400"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          height="533"
+          class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 group-hover:opacity-0"
+        />
+        <!-- Hover Image (same image with slight transform for demo) -->
+        <img
+          :src="product.image"
+          :alt="product.name"
+          loading="lazy"
+          width="400"
+          height="533"
+          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 group-hover:opacity-100 scale-105"
         />
       </NuxtLink>
-      
-      <!-- Quick View Button (appears on hover) -->
-      <button
-        @click="handleQuickView"
-        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-astro-purple to-transparent py-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-      >
-        {{ $t('common.quickView') }} 👁️
-      </button>
 
-      <!-- Wishlist Button -->
-      <div class="absolute top-3 right-3">
+      <!-- Quick Add Button - slides up from bottom -->
+      <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-white/90 backdrop-blur-sm">
+        <button
+          @click="handleAddToCart"
+          class="w-full text-[10px] text-center tracking-[0.3em] uppercase font-light hover:opacity-50 transition-opacity"
+        >
+          + Quick Add
+        </button>
+      </div>
+
+      <!-- Wishlist Button - top right -->
+      <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <WishlistButton :product="product" />
       </div>
 
-      <!-- Badge -->
+      <!-- Badge - top left -->
       <div v-if="product.badge" class="absolute top-3 left-3">
-        <span class="px-3 py-1 bg-astro-purple/90 backdrop-blur-sm text-white text-xs font-bold rounded-full">
+        <span class="px-3 py-1 bg-black text-white text-[8px] font-light tracking-[0.2em] uppercase">
           {{ product.badge }}
         </span>
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="p-5">
-      <!-- Category -->
-      <p class="text-xs uppercase tracking-widest text-astro-purple mb-2 font-semibold">{{ product.category }}</p>
-      
-      <!-- Name -->
+    <!-- Product Info -->
+    <div class="mt-6 text-center">
       <NuxtLink :to="`/product/${product.id}`">
-        <h3 class="text-lg font-serif font-bold text-gray-900 mb-2 group-hover:text-astro-purple transition-colors line-clamp-2">
+        <h3 class="text-xs tracking-[0.15em] uppercase font-medium text-gray-900 hover:opacity-50 transition-opacity">
           {{ product.name }}
         </h3>
       </NuxtLink>
-      
-      <!-- Zodiac -->
-      <p class="text-sm text-gray-500 mb-3">{{ product.zodiac }}</p>
-      
-      <!-- Rating & Price -->
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-1">
-          <span class="text-yellow-500">⭐</span>
-          <span class="text-sm text-gray-700 font-medium">{{ product.rating }}</span>
-        </div>
-        <span class="text-xl font-bold text-astro-purple">{{ formatPrice(product.price) }}</span>
+      <p class="text-xs text-gray-500 mt-2 font-light">{{ product.zodiac }}</p>
+      <div class="flex items-center justify-center gap-2 mt-2">
+        <span class="text-[10px] text-gray-400">⭐</span>
+        <span class="text-[10px] text-gray-500 font-light">{{ product.rating }}</span>
       </div>
-
-      <!-- Buttons -->
-      <div class="space-y-2">
-        <button
-          @click="handleAddToCart"
-          class="w-full bg-gradient-to-r from-astro-purple to-astro-teal text-white py-3 rounded-xl font-medium hover:shadow-lg hover:shadow-astro-purple/50 transition-all"
-        >
-          {{ $t('common.addToCart') }} 🛒
-        </button>
-        <CompareButton :product="product" />
-      </div>
+      <p class="mt-3 text-xs text-gray-900 font-light">{{ formatPrice(product.price) }}</p>
     </div>
   </div>
 </template>

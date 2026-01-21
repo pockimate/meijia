@@ -4,77 +4,73 @@
     <PromoBanner />
     
     <!-- Hero -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-astro-pink via-white to-white">
-      <div class="absolute inset-0 z-0 pointer-events-none">
-        <div class="absolute top-20 right-20 w-72 h-72 bg-astro-teal/10 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-10 left-10 w-96 h-96 bg-astro-purple/10 rounded-full blur-[120px]"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto relative z-10">
-        <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-          <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div class="sm:text-center lg:text-left">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-astro-purple/30 bg-astro-purple/10 text-astro-purple text-xs font-semibold tracking-wider mb-6 animate-pulse">
-                ⭐ COSMIC COLLECTION DROPPED
-              </div>
-              <h1 class="text-4xl tracking-tight font-serif font-bold text-gray-900 sm:text-5xl md:text-6xl">
-                <span class="block xl:inline">Nails written in</span>
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-astro-teal via-astro-purple to-astro-pink xl:inline"> the stars</span>
-              </h1>
-              <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Unlock your cosmic energy with our limited edition zodiac press-ons. Hand-painted chrome, cat-eye, and aura designs that align with your planetary chart.
-              </p>
-              <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
-                <NuxtLink to="/shop" class="w-full sm:w-auto flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-white bg-gradient-to-r from-astro-purple to-astro-teal hover:shadow-lg transition-all">
-                  Explore Shop
-                </NuxtLink>
-                <NuxtLink to="/stylist" class="mt-3 sm:mt-0 w-full sm:w-auto flex items-center justify-center px-8 py-3 border-2 border-astro-purple text-base font-medium rounded-lg text-astro-purple hover:bg-astro-purple/10 transition-all">
-                  Ask Astra AI →
-                </NuxtLink>
-              </div>
-            </div>
-          </main>
-        </div>
-      </div>
-      <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 overflow-hidden">
-        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=2511&auto=format&fit=crop" alt="Holographic purple nail art" />
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent"></div>
+    <div class="relative h-screen flex items-center justify-center overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0 bg-black/10 z-10" />
+      <img 
+        src="https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?q=80&w=2511&auto=format&fit=crop" 
+        class="absolute inset-0 w-full h-full object-cover scale-105"
+        alt="Cosmic Nail Art"
+      />
+      
+      <!-- Hero Content -->
+      <div class="relative z-20 text-center text-white px-4">
+        <h1 class="text-5xl md:text-7xl font-extralight tracking-tighter mb-6">
+          BEAUTY IN SECONDS
+        </h1>
+        <p class="text-sm tracking-[0.4em] uppercase font-light mb-10">
+          Revolutionary Magnetic Technology
+        </p>
+        <NuxtLink 
+          to="/shop" 
+          class="inline-block px-12 py-4 bg-white text-black text-[10px] tracking-[0.3em] uppercase hover:bg-black hover:text-white transition-all duration-500"
+        >
+          Explore Now
+        </NuxtLink>
       </div>
     </div>
 
     <!-- Marquee -->
-    <div class="bg-astro-purple/10 border-y border-astro-purple/20 overflow-hidden py-3">
+    <div class="bg-black text-white overflow-hidden py-3">
       <div class="flex whitespace-nowrap animate-marquee">
-        <span class="text-astro-purple font-mono text-sm uppercase tracking-widest mx-8 font-semibold">⭐ Free Interstellar Shipping over $50 ⭐ Vegan & Cruelty Free ⭐ AI Powered Styling ⭐ Free Interstellar Shipping over $50 ⭐ Vegan & Cruelty Free ⭐ AI Powered Styling</span>
+        <span class="text-white font-light text-[10px] uppercase tracking-[0.3em] mx-8">⭐ Free Shipping over $50 ⭐ Vegan & Cruelty Free ⭐ AI Powered Styling ⭐ Free Shipping over $50 ⭐ Vegan & Cruelty Free ⭐ AI Powered Styling</span>
       </div>
     </div>
 
     <!-- Categories -->
-    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <h2 class="text-2xl font-serif font-bold text-gray-900 mb-8">✨ Explore Sectors</h2>
+    <section class="py-24 px-8 lg:px-12 max-w-7xl mx-auto">
+      <h2 class="text-2xl font-light tracking-widest uppercase mb-16">Explore Collections</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <NuxtLink v-for="cat in categories" :key="cat.name" :to="cat.link" class="group relative h-64 rounded-2xl overflow-hidden border border-gray-200 hover:border-astro-purple transition-all shadow-sm hover:shadow-lg">
-          <img :src="cat.image" :alt="cat.name" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <NuxtLink 
+          v-for="cat in categories" 
+          :key="cat.name" 
+          :to="cat.link" 
+          class="group relative h-96 overflow-hidden"
+        >
+          <img 
+            :src="cat.image" 
+            :alt="cat.name" 
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <p class="text-astro-teal text-xs font-mono uppercase tracking-widest mb-1">{{ cat.subtitle }}</p>
-            <h3 class="text-2xl font-serif font-bold text-white group-hover:translate-x-2 transition-transform">{{ cat.name }}</h3>
+          <div class="absolute bottom-0 left-0 p-8">
+            <p class="text-white text-[10px] font-light uppercase tracking-[0.2em] mb-2">{{ cat.subtitle }}</p>
+            <h3 class="text-2xl font-light text-white tracking-wide">{{ cat.name }}</h3>
           </div>
         </NuxtLink>
       </div>
     </section>
 
     <!-- Featured Products -->
-    <section class="py-16 relative overflow-hidden bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="flex justify-between items-end mb-10">
-          <div>
-            <h2 class="text-3xl font-serif font-bold text-gray-900">Trending in the Cosmos</h2>
-            <p class="mt-2 text-gray-600">Curated selections from the latest planetary alignment.</p>
-          </div>
-          <NuxtLink to="/shop" class="hidden sm:flex items-center text-astro-purple hover:text-astro-teal transition-colors font-medium">View All →</NuxtLink>
+    <section class="py-24">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="flex justify-between items-end mb-16">
+          <h2 class="text-2xl font-light tracking-widest uppercase">Best Sellers</h2>
+          <NuxtLink to="/shop" class="text-xs border-b border-black pb-1 tracking-widest uppercase hover:opacity-50 transition-opacity">
+            View All
+          </NuxtLink>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
           <ProductCard
             v-for="product in featuredProducts" 
             :key="product.id"
@@ -85,36 +81,37 @@
     </section>
 
     <!-- AI Stylist Promo -->
-    <section class="py-24 relative overflow-hidden bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-astro-pink/20 via-white to-astro-purple/10 border border-gray-200 shadow-xl">
-          <div class="grid grid-cols-1 md:grid-cols-2 items-center">
-            <div class="p-8 md:p-16 relative z-10">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-astro-purple/30 bg-astro-purple/10 text-astro-purple text-xs font-semibold tracking-wider mb-6">
-                ✨ ASTRA AI 2.0
-              </div>
-              <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Not sure what matches your vibe?</h2>
-              <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                Let Astra, our Zodiac AI Stylist, scan your star chart and current mood to generate a personalized nail art recommendation.
-              </p>
-              <NuxtLink to="/stylist" class="inline-flex items-center bg-gradient-to-r from-astro-purple to-astro-teal text-white px-8 py-4 rounded-lg font-bold uppercase tracking-widest hover:shadow-lg transition-all">
-                Start Analysis →
-              </NuxtLink>
+    <section class="bg-stone-50 py-24">
+      <div class="max-w-5xl mx-auto px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <h2 class="text-3xl font-light tracking-tight italic">Why ASTRO NAILS?</h2>
+          <div class="space-y-6">
+            <div class="border-l border-gray-300 pl-6">
+              <h4 class="text-xs font-bold tracking-widest uppercase">NO GLUE</h4>
+              <p class="text-sm text-gray-500 mt-1 font-light">Zero chemical contact with skin.</p>
             </div>
-            <div class="h-64 md:h-96 bg-gray-50 flex items-center justify-center relative border-l border-gray-200 p-8">
-              <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 p-4 shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div class="flex gap-2 mb-4">
-                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                </div>
-                <div class="space-y-3 font-mono text-xs">
-                  <div class="bg-gray-100 p-2 rounded text-gray-700">User: I need something for Leo season.</div>
-                  <div class="bg-astro-purple/10 p-2 rounded text-astro-purple font-medium">Astra: Analyzing... 🔥 Solar energy detected.</div>
-                </div>
-              </div>
+            <div class="border-l border-gray-300 pl-6">
+              <h4 class="text-xs font-bold tracking-widest uppercase">REUSABLE</h4>
+              <p class="text-sm text-gray-500 mt-1 font-light">Lasts up to 90-180 days with proper care.</p>
+            </div>
+            <div class="border-l border-gray-300 pl-6">
+              <h4 class="text-xs font-bold tracking-widest uppercase">3 SECONDS</h4>
+              <p class="text-sm text-gray-500 mt-1 font-light">Patented technology for instant application.</p>
             </div>
           </div>
+          <NuxtLink 
+            to="/stylist" 
+            class="inline-block px-8 py-3 bg-black text-white text-[10px] tracking-[0.3em] uppercase hover:bg-gray-800 transition-all"
+          >
+            Try AI Stylist →
+          </NuxtLink>
+        </div>
+        <div class="aspect-square bg-gray-200">
+          <img 
+            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000" 
+            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+            alt="technology" 
+          />
         </div>
       </div>
     </section>
@@ -134,23 +131,23 @@
     </section>
 
     <!-- Features -->
-    <section class="py-12 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
-          <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-astro-purple transition-colors hover:shadow-md">
-            <div class="text-4xl mb-4">🚀</div>
-            <h3 class="text-lg font-serif font-semibold text-gray-900">Interstellar Shipping</h3>
-            <p class="text-gray-600 text-sm mt-2">Free on orders over $50</p>
+    <section class="py-16 bg-white border-y border-gray-100">
+      <div class="max-w-7xl mx-auto px-8 lg:px-12">
+        <div class="grid grid-cols-1 gap-12 sm:grid-cols-3">
+          <div class="text-center space-y-4">
+            <div class="text-3xl">🚀</div>
+            <h3 class="text-xs font-bold tracking-widest uppercase">Free Shipping</h3>
+            <p class="text-xs text-gray-500 font-light">On orders over $50</p>
           </div>
-          <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-astro-teal transition-colors hover:shadow-md">
-            <div class="text-4xl mb-4">🛡️</div>
-            <h3 class="text-lg font-serif font-semibold text-gray-900">Galaxy Grade Durability</h3>
-            <p class="text-gray-600 text-sm mt-2">Lasts up to 2 weeks</p>
+          <div class="text-center space-y-4">
+            <div class="text-3xl">🛡️</div>
+            <h3 class="text-xs font-bold tracking-widest uppercase">Long Lasting</h3>
+            <p class="text-xs text-gray-500 font-light">Lasts up to 2 weeks</p>
           </div>
-          <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-astro-pink transition-colors hover:shadow-md">
-            <div class="text-4xl mb-4">💚</div>
-            <h3 class="text-lg font-serif font-semibold text-gray-900">Vegan & Cruelty Free</h3>
-            <p class="text-gray-600 text-sm mt-2">Earth-friendly materials</p>
+          <div class="text-center space-y-4">
+            <div class="text-3xl">💚</div>
+            <h3 class="text-xs font-bold tracking-widest uppercase">Vegan & Cruelty Free</h3>
+            <p class="text-xs text-gray-500 font-light">Earth-friendly materials</p>
           </div>
         </div>
       </div>
