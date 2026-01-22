@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-white text-gray-900 font-sans">
+  <div class="flex flex-col min-h-screen bg-white text-gray-900 font-sans layout-wrapper">
     <!-- Navbar -->
     <nav class="sticky top-0 w-full z-50 transition-all duration-500 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-soft">
       <div class="max-w-7xl mx-auto px-8 lg:px-12">
@@ -149,7 +149,7 @@
     <ToastContainer />
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow relative main-content">
       <slot />
     </main>
 
@@ -212,6 +212,17 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 确保 layout 不干扰 sticky */
+.layout-wrapper {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+.main-content {
+  overflow: visible;
+  transform: none !important;
+}
+
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.3s ease;

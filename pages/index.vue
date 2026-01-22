@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="bg-white">
     <!-- Marquee Banner -->
     <div class="bg-black text-white py-2 overflow-hidden">
@@ -164,7 +164,7 @@
             to="/about" 
             class="inline-block text-xs tracking-[0.2em] uppercase border-b border-black pb-1 hover:opacity-50 transition-opacity"
           >
-            Learn More �?
+            Learn More 鈫?
           </NuxtLink>
         </div>
       </div>
@@ -216,6 +216,12 @@
         </div>
       </div>
     </section>
+
+    <!-- Style Showcase -->
+    <StyleShowcase />
+
+    <!-- Premium Promo Section -->
+    <PremiumPromoSection />
 
     <!-- Technology Section -->
     <section class="py-24 px-8 lg:px-12 max-w-7xl mx-auto">

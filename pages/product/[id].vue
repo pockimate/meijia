@@ -122,10 +122,30 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
               <span class="font-light">30-day return policy</span>
             </div>
+
+          <!-- Pairs Well With -->
+          <div class="pt-6 border-t border-gray-100">
+            <PairsWellWith :current-product="product" />
+          </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Product Detail Tabs -->
+    <ProductDetailTabs v-if="product" :product="product" />
+
+    <!-- Product Detail Images -->
+    <ProductDetailImages />
+
+    <!-- Trust Badges -->
+    <TrustBadges />
+
+    <!-- Related Products -->
+    <RelatedProducts v-if="product" :current-product="product" />
+
+    <!-- Social Share -->
+    <ProductSocialShare v-if="product" :product="product" />
   </div>
 </template>
 
